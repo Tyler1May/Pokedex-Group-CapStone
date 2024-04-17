@@ -24,6 +24,11 @@
 		A38B13092B4EF1CB003D33D8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B13082B4EF1CB003D33D8 /* API.swift */; };
 		A38B130B2B4EF8E4003D33D8 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B130A2B4EF8E4003D33D8 /* PokemonTableViewCell.swift */; };
 		A38B130D2B4EFBD5003D33D8 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */; };
+		F7EDCAA42BCECCBD000EAAD1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */; };
+		F7EDCAA82BCED1D2000EAAD1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */; };
+		F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */; };
+		F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */; };
+		F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */; };
 		EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA934D762BCECDD10070EFC7 /* PokemonCell.swift */; };
 		EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD349582BCEB9AD00F74282 /* PokemonCell.xib */; };
 /* End PBXBuildFile section */
@@ -48,6 +53,11 @@
 		A38B13082B4EF1CB003D33D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A38B130A2B4EF8E4003D33D8 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
+		F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamViewController.swift; sourceTree = "<group>"; };
+		F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTeamView.storyboard; sourceTree = "<group>"; };
 		EA934D762BCECDD10070EFC7 /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
 		EAD349582BCEB9AD00F74282 /* PokemonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +99,8 @@
 				A38B12E22B4EE879003D33D8 /* AppDelegate.swift */,
 				A38B12E42B4EE879003D33D8 /* SceneDelegate.swift */,
 				A38B12E82B4EE879003D33D8 /* Main.storyboard */,
+				F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */,
+				F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */,
 				A38B12EB2B4EE87A003D33D8 /* Assets.xcassets */,
 				A38B12ED2B4EE87A003D33D8 /* LaunchScreen.storyboard */,
 				A38B12F02B4EE87A003D33D8 /* Info.plist */,
@@ -115,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A38B13022B4EEE28003D33D8 /* PokemonController.swift */,
+				A38B12F62B4EEB43003D33D8 /* PokemonSearchTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -123,8 +136,10 @@
 			isa = PBXGroup;
 			children = (
 				A38B130A2B4EF8E4003D33D8 /* PokemonTableViewCell.swift */,
-				A38B12F62B4EEB43003D33D8 /* PokemonSearchTableViewController.swift */,
 				A38B12E62B4EE879003D33D8 /* PokemonDetailViewController.swift */,
+				F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */,
+				F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */,
+				F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -196,9 +211,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */,
 				A38B12EF2B4EE87A003D33D8 /* LaunchScreen.storyboard in Resources */,
 				EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */,
 				A38B12EC2B4EE87A003D33D8 /* Assets.xcassets in Resources */,
+				F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */,
 				A38B12EA2B4EE879003D33D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,15 +232,18 @@
 				A38B130B2B4EF8E4003D33D8 /* PokemonTableViewCell.swift in Sources */,
 				A38B13072B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift in Sources */,
 				A38B13032B4EEE28003D33D8 /* PokemonController.swift in Sources */,
+				F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */,
 				EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */,
 				A38B13002B4EED94003D33D8 /* PokemonSprites.swift in Sources */,
 				A38B12E32B4EE879003D33D8 /* AppDelegate.swift in Sources */,
 				A38B13052B4EEFB1003D33D8 /* PokemonGenericSearch.swift in Sources */,
 				A38B130D2B4EFBD5003D33D8 /* UIImageViewExtension.swift in Sources */,
 				A38B12E52B4EE879003D33D8 /* SceneDelegate.swift in Sources */,
+				F7EDCAA82BCED1D2000EAAD1 /* SearchViewController.swift in Sources */,
 				A38B12F72B4EEB43003D33D8 /* PokemonSearchTableViewController.swift in Sources */,
 				A38B12FC2B4EED69003D33D8 /* PokemonTypeContainer.swift in Sources */,
 				A38B13092B4EF1CB003D33D8 /* API.swift in Sources */,
+				F7EDCAA42BCECCBD000EAAD1 /* TabBarViewController.swift in Sources */,
 				A38B12FE2B4EED7C003D33D8 /* PokemonType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

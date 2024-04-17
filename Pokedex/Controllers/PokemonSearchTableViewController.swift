@@ -52,26 +52,6 @@ class PokemonSearchTableViewController: UITableViewController, UISearchBarDelega
     
     // MARK: - UISearchBar Delegate Methods
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // If the text is empty bring the generic pokemon back to the screen
-        if searchBar.text ?? "" == "" {
-            displayGenericPokemon()
-            return
-        }
-        
-        // Display the searched pokemon
-        Task {
-            do {
-                if let searchedPokemon = try await PokemonController.getSpecificPokemon(pokemonName: searchBar.text ?? "") {
-                    pokemon = [searchedPokemon]
-                    tableView.reloadData()
-                }
-            } catch {
-                // TODO: Handle errors
-                print(error)
-            }
-        }
-    }
-    
+
 
 }

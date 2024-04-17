@@ -52,5 +52,27 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // If the text is empty bring the generic pokemon back to the screen
+        if searchBar.text ?? "" == "" {
+            displayGenericPokemon()
+            return
+        }
+        
+        // Display the searched pokemon
+        Task {
+            do {
+                if let searchedPokemon = try await PokemonController.getSpecificPokemon(pokemonName: searchBar.text ?? "") {
+                    pokemon = [searchedPokemon]
+                    searchTableView.reloadData()
+                }
+            } catch {
+                // TODO: Handle errors
+                print(error)
+            }
+        }
+    }
+    
+    
     
 }

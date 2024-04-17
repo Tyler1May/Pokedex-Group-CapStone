@@ -29,6 +29,8 @@
 		F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */; };
 		F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */; };
 		F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */; };
+		EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA934D762BCECDD10070EFC7 /* PokemonCell.swift */; };
+		EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD349582BCEB9AD00F74282 /* PokemonCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
 		F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamViewController.swift; sourceTree = "<group>"; };
 		F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTeamView.storyboard; sourceTree = "<group>"; };
+		EA934D762BCECDD10070EFC7 /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
+		EAD349582BCEB9AD00F74282 /* PokemonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		A38B12E12B4EE879003D33D8 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				EA934D752BCECD890070EFC7 /* PokemonCell */,
 				A38B130E2B4EFD52003D33D8 /* ViewControllers */,
 				A38B13012B4EEE09003D33D8 /* Controllers */,
 				A38B12FA2B4EED3C003D33D8 /* Models */,
@@ -137,6 +142,15 @@
 				F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EA934D752BCECD890070EFC7 /* PokemonCell */ = {
+			isa = PBXGroup;
+			children = (
+				EAD349582BCEB9AD00F74282 /* PokemonCell.xib */,
+				EA934D762BCECDD10070EFC7 /* PokemonCell.swift */,
+			);
+			path = PokemonCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +213,7 @@
 			files = (
 				F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */,
 				A38B12EF2B4EE87A003D33D8 /* LaunchScreen.storyboard in Resources */,
+				EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */,
 				A38B12EC2B4EE87A003D33D8 /* Assets.xcassets in Resources */,
 				F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */,
 				A38B12EA2B4EE879003D33D8 /* Main.storyboard in Resources */,
@@ -218,6 +233,7 @@
 				A38B13072B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift in Sources */,
 				A38B13032B4EEE28003D33D8 /* PokemonController.swift in Sources */,
 				F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */,
+				EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */,
 				A38B13002B4EED94003D33D8 /* PokemonSprites.swift in Sources */,
 				A38B12E32B4EE879003D33D8 /* AppDelegate.swift in Sources */,
 				A38B13052B4EEFB1003D33D8 /* PokemonGenericSearch.swift in Sources */,

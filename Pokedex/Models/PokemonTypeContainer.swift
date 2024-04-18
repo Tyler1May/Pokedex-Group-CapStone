@@ -10,4 +10,5 @@ import Foundation
 struct PokemonTypeContainer: Codable {
     var slot: Int
     var type: PokemonType
+
 }

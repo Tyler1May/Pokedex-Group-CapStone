@@ -18,7 +18,6 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var pokemonName: UILabel!
     @IBOutlet weak var pokemonNumber: UILabel!
     @IBOutlet weak var pokemonType: UILabel!
-    @IBOutlet weak var pokemonGeneration: UILabel!
     
     @IBOutlet weak var pokemonImage: UIImageView!
     
@@ -30,10 +29,10 @@ class PokemonCell: UITableViewCell {
     
     func update(with pokemon: Pokemon) {
         
-        pokemonName.text = pokemon.name
-//        pokemonNumber.text = pokemon.n
-//        pokemonType.text = pokemon.
-//        pokemonGeneration.text = pokemon.
+        pokemonName.text = pokemon.name.capitalized
+        pokemonNumber.text = "No. \(pokemon.id)"
+        
+        pokemonType.text = pokemon.types.reduce("") { "\($0 ?? "") \($1.type.name.capitalized)"}
         pokemonImage.load(url: pokemon.sprites.front_default)
     }
     

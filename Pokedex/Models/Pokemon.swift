@@ -12,4 +12,23 @@ struct Pokemon: Codable {
     var types: [PokemonTypeContainer]
     var sprites: PokemonSprites
     var id: Int
+    var stats: [PokemonStatsContainer]
+    
+    enum codingKeys: String, CodingKey {
+        case stats = "stats"
+    }
+}
+
+struct PokemonStatsContainer: Codable {
+    var baseStat: Int?
+    
+    var stat: PokemonStat
+//    
+    enum codingKeys: String, CodingKey {
+        case baseStat = "base_stat"
+    }
+}
+
+struct PokemonStat: Codable {
+    var name: String
 }

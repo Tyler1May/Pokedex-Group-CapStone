@@ -30,7 +30,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         Task {
             let pokemon = try? await PokemonController.getGenericPokemon()
-            self.pokemon = pokemon!
+                
+                self.pokemon = pokemon!
+            
             searchTableView.reloadData()
         }
         

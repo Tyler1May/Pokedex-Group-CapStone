@@ -24,13 +24,13 @@
 		A38B13092B4EF1CB003D33D8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B13082B4EF1CB003D33D8 /* API.swift */; };
 		A38B130B2B4EF8E4003D33D8 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B130A2B4EF8E4003D33D8 /* PokemonTableViewCell.swift */; };
 		A38B130D2B4EFBD5003D33D8 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */; };
+		EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA934D762BCECDD10070EFC7 /* PokemonCell.swift */; };
+		EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD349582BCEB9AD00F74282 /* PokemonCell.xib */; };
 		F7EDCAA42BCECCBD000EAAD1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */; };
 		F7EDCAA82BCED1D2000EAAD1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */; };
 		F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */; };
 		F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */; };
 		F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */; };
-		EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA934D762BCECDD10070EFC7 /* PokemonCell.swift */; };
-		EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD349582BCEB9AD00F74282 /* PokemonCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,13 +53,13 @@
 		A38B13082B4EF1CB003D33D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A38B130A2B4EF8E4003D33D8 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		EA934D762BCECDD10070EFC7 /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
+		EAD349582BCEB9AD00F74282 /* PokemonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCell.xib; sourceTree = "<group>"; };
 		F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
 		F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamViewController.swift; sourceTree = "<group>"; };
 		F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTeamView.storyboard; sourceTree = "<group>"; };
-		EA934D762BCECDD10070EFC7 /* PokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
-		EAD349582BCEB9AD00F74282 /* PokemonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

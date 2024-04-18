@@ -27,11 +27,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     func displayGenericPokemon() {
+        
         Task {
             let pokemon = try? await PokemonController.getGenericPokemon()
             self.pokemon = pokemon!
             searchTableView.reloadData()
         }
+        
     }
     
 

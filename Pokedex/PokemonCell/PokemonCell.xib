@@ -36,7 +36,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No.#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOG-q6-jdM">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No.#" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOG-q6-jdM">
                                             <rect key="frame" x="182.66666666666669" y="0.0" width="182.33333333333331" height="75"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -48,13 +48,7 @@
                                     <rect key="frame" x="0.0" y="75" width="365" height="75"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bac-5x-kGN">
-                                            <rect key="frame" x="0.0" y="0.0" width="182.66666666666666" height="75"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="generation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06F-6f-KmV">
-                                            <rect key="frame" x="182.66666666666669" y="0.0" width="182.33333333333331" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="75"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -72,6 +66,7 @@
                         <constraint firstItem="D0j-Ed-QL4" firstAttribute="leading" secondItem="U3X-Iz-N13" secondAttribute="leading" constant="16" id="Zlc-V0-wz7"/>
                         <constraint firstAttribute="bottom" secondItem="Yxb-Vr-Eth" secondAttribute="bottom" constant="16" id="oVS-jm-ikg"/>
                         <constraint firstAttribute="trailing" secondItem="Yxb-Vr-Eth" secondAttribute="trailing" constant="16" id="on5-HB-lMd"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="D0j-Ed-QL4" secondAttribute="bottom" constant="16" id="t37-Dn-ZJe"/>
                     </constraints>
                 </view>
             </subviews>
@@ -85,7 +80,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="pokemonGeneration" destination="06F-6f-KmV" id="fDb-NK-g8g"/>
                 <outlet property="pokemonImage" destination="D0j-Ed-QL4" id="Je1-DB-P95"/>
                 <outlet property="pokemonName" destination="xdM-rq-FcE" id="fLO-AW-Rc0"/>
                 <outlet property="pokemonNumber" destination="pOG-q6-jdM" id="DCL-GH-kOr"/>

@@ -45,6 +45,8 @@ struct PokemonController {
         
         // Now loop through the results and make another API call to get extra data about each pokemon
         var pokemon: [Pokemon] = []
+        
+                
         for pokemonResult in pokemonGenericSearch.results {
             request = URLRequest(url: pokemonResult.url)
             do {

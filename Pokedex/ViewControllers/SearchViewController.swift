@@ -47,7 +47,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     }
     
-
+    @IBSegueAction func toDetailSegue(_ coder: NSCoder) -> PokemonDetailViewController? {
+        return PokemonDetailViewController(coder: coder)
+    }
+    
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -64,6 +67,24 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            // Perform the segue when a row is selected
+            performSegue(withIdentifier: "toDetail", sender: nil)
+        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "toDetail" {
+                // Get the destination view controller and set its properties if needed
+                if let destinationVC = segue.destination as? PokemonDetailViewController {
+                    if let selectedIndexPath = searchTableView.indexPathForSelectedRow {
+                        destinationVC.pokemon = pokemon[selectedIndexPath.row]
+                    }
+                }
+            }
+        }
+    
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // If the text is empty bring the generic pokemon back to the screen

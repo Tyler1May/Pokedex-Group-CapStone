@@ -45,7 +45,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up constraints for PokemonImageView
         pokemonImageView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 20),
+            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 10),
             pokemonImageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokemonImageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -53,39 +53,58 @@ class PokemonDetailViewController: UIViewController {
         // Set up nameLabel constraints
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 20),
+            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
-        // Create PokemonTypeView
-        let types = pokemon?.types ?? []
-        let pokemonTypeView = UIHostingController(rootView: PokemonTypesView(types: types))
-        addChild(pokemonTypeView)
-        view.addSubview(pokemonTypeView.view)
-        pokemonTypeView.didMove(toParent: self)
+        let scrollView = UIScrollView()
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(scrollView)
+            NSLayoutConstraint.activate([
+                scrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+                scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
         
-        // Set up constraints for PokemonTypeView
-        pokemonTypeView.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pokemonTypeView.view.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            pokemonTypeView.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-            pokemonTypeView.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5)
-        ])
+        // Create a content UIView
+            let contentView = UIView()
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.addSubview(contentView)
+            NSLayoutConstraint.activate([
+                contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor) // ensures the contentView doesn't scroll horizontally
+            ])
         
-        // Create PokemonStatusChartView
-        let stats = pokemon?.stats ?? []
-        let pokemonStatChartView = UIHostingController(rootView: PokemonStatusChart(stats: stats))
-        addChild(pokemonStatChartView)
-        view.addSubview(pokemonStatChartView.view)
-        pokemonStatChartView.didMove(toParent: self)
-        
-        // Set up constraints for PokemonStatusChartView
-        pokemonStatChartView.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pokemonStatChartView.view.topAnchor.constraint(equalTo: pokemonTypeView.view.bottomAnchor, constant: 20),
-            pokemonStatChartView.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-            pokemonStatChartView.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5)
-        ])
+        // Add PokemonTypeView and PokemonStatusChartView to the contentView
+            let types = pokemon?.types ?? []
+            let pokemonTypeView = UIHostingController(rootView: PokemonTypesView(types: types))
+            addChild(pokemonTypeView)
+            contentView.addSubview(pokemonTypeView.view)
+            pokemonTypeView.didMove(toParent: self)
+            
+            let stats = pokemon?.stats ?? []
+            let pokemonStatChartView = UIHostingController(rootView: PokemonStatusChart(stats: stats))
+            addChild(pokemonStatChartView)
+            contentView.addSubview(pokemonStatChartView.view)
+            pokemonStatChartView.didMove(toParent: self)
+            
+            // Set up constraints for PokemonTypeView and PokemonStatusChartView within contentView
+            pokemonTypeView.view.translatesAutoresizingMaskIntoConstraints = false
+            pokemonStatChartView.view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                pokemonTypeView.view.topAnchor.constraint(equalTo: contentView.topAnchor),
+                pokemonTypeView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+                pokemonTypeView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+                
+                pokemonStatChartView.view.topAnchor.constraint(equalTo: pokemonTypeView.view.bottomAnchor, constant: 10),
+                pokemonStatChartView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+                pokemonStatChartView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+                pokemonStatChartView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // last element, constrain to bottom of contentView
+            ])
     }
 
 }

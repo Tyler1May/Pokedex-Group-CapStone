@@ -61,7 +61,7 @@ struct PokemonTypesView: View {
         
         LazyVGrid(columns: columns, spacing: 10) {
             ForEach(types, id: \.type.name) { typeContainer in
-                Text(typeContainer.type.name)
+                Text(typeContainer.type.name.capitalized)
                     .padding()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                     .background(Color.blue)

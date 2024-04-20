@@ -18,32 +18,32 @@ struct PokemonImageView: View {
                         image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 325, height: 100)
+                        .frame(width: 325, height: 80)
                 } placeholder: {
                     ProgressView()
                 }
                     Text("Evo 1")
-                        .font(.largeTitle)
+                        .font(.title)
                 }
                 
                 VStack(alignment: .center) {
                     Image(systemName: "person.fill")
-                        .frame(width: 325, height: 100)
+                        .frame(width: 325, height: 80)
                     Text("Evo 2")
-                        .font(.largeTitle)
+                        .font(.title)
                 }
                 
                 VStack(alignment: .center) {
                     Image(systemName: "person.circle.fill")
-                        .frame(width: 325, height: 100)
+                        .frame(width: 325, height: 80)
                     Text("Evo 3")
-                        .font(.largeTitle)
+                        .font(.title)
                 }
                 
             }
         }
         .padding()
-        .background(Color(.systemGray5))
+        .background(Color(.systemGray6))
         .clipShape(RoundedShape(corners: [.allCorners]))
         .padding()
         .shadow(radius: 10)

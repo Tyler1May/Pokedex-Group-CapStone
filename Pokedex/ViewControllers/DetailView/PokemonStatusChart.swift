@@ -12,13 +12,13 @@ struct PokemonStatusChart: View {
     var stats: [PokemonStatsContainer]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             Text("Stats")
                 .font(.title)
             ForEach(stats, id: \.stat.name) { stat in
-                HStack {
+                HStack(spacing: 5) {
                     Text(stat.stat.name.capitalized)
-                        .frame(width: 100, alignment: .leading)
+                        .frame(width: 75, alignment: .leading)
                     RoundedShape(corners: [.topRight, .bottomRight])
                         .fill(self.barColor(for: stat.stat.name))
                         .frame(width: CGFloat(stat.baseStat), height: 20)
@@ -27,6 +27,7 @@ struct PokemonStatusChart: View {
             }
         }
         .padding()
+        .frame(maxWidth: .infinity)
         .background(Color(.systemGray5))
         .clipShape(RoundedShape(corners: [.allCorners]))
         .padding()

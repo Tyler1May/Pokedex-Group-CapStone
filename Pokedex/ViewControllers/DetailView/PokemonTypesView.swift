@@ -64,24 +64,68 @@ struct PokemonTypesView: View {
                 Text(typeContainer.type.name.capitalized)
                     .padding()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                    .background(Color.blue)
+                    .background(Color(typeColor(for: typeContainer.type.name)))
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
     }
     
+    func typeColor(for name: String) -> UIColor {
+        switch name {
+        case "normal":
+            return UIColor.normal
+        case "bug":
+            return UIColor.bug
+        case "dragon":
+            return UIColor.dragon
+        case "fairy":
+            return UIColor.fairy
+        case "fire":
+            return UIColor.fire
+        case "ghost":
+            return UIColor.ghost
+        case "ground":
+            return UIColor.ground
+        case "psychic":
+            return  UIColor.psychic
+        case "steel" :
+            return UIColor.steel
+        case "dark" :
+            return UIColor.dark
+        case "electric" :
+            return UIColor.electric
+        case "fighting" :
+            return UIColor.fighting
+        case "flying" :
+            return UIColor.flying
+        case "grass" :
+            return UIColor.grass
+        case "ice" :
+            return UIColor.ice
+        case "poison" :
+            return UIColor.poison
+        case "rock" :
+            return UIColor.rock
+        case "water" :
+            return UIColor.water
+        default:
+            return .gray
+        }
+    }
+    
 }
+
 #Preview {
     PokemonTypesView(types: [
-        PokemonTypeContainer(slot: 1, type: .init(name: "Plant")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "Fire")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "Water")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "Earth")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "Big")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "huge")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "strong")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "poison")),
-        PokemonTypeContainer(slot: 1, type: .init(name: "giant"))
+        PokemonTypeContainer(slot: 1, type: .init(name: "electric")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "fire")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "water")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "rock")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "fighting")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "psychic")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "fairy")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "grass")),
+        PokemonTypeContainer(slot: 1, type: .init(name: "bug"))
     ])
 }

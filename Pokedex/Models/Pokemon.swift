@@ -14,18 +14,16 @@ struct Pokemon: Codable {
     var id: Int
     var stats: [PokemonStatsContainer]
     
-    enum codingKeys: String, CodingKey {
-        case stats = "stats"
     }
-}
 
 struct PokemonStatsContainer: Codable {
-    var baseStat: Int?
+    var baseStat: Int
     
     var stat: PokemonStat
-//    
-    enum codingKeys: String, CodingKey {
+    
+    enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
+        case stat
     }
 }
 

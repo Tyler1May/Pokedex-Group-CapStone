@@ -9,4 +9,7 @@ import Foundation
 
 struct PokemonType: Codable {
     var name: String
+    var url: String
 }
+
+

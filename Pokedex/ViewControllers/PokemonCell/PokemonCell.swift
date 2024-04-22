@@ -36,5 +36,8 @@ class PokemonCell: UITableViewCell {
         pokemonImage.load(url: pokemon.sprites.front_default)
     }
     
+    @IBAction func favortieButton(_ sender: Any) {
+        
+    }
     
 }

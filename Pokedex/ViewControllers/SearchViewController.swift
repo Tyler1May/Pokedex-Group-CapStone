@@ -24,18 +24,27 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchTableView.delegate = self
         searchTableView.reloadData()
         
+        
     }
     
     func displayGenericPokemon() {
         
         Task {
             let pokemon = try? await PokemonController.getGenericPokemon()
+            guard let pokemon else { return }
+            
+                self.pokemon = pokemon
+            
+            // TODO: delete this
+            let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
+            if let typeRelations {
                 
-                self.pokemon = pokemon!
+                print(typeRelations)
+            }
             
             searchTableView.reloadData()
         }
-        
+
     }
     
 

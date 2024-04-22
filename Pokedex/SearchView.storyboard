@@ -35,11 +35,22 @@
                     </view>
                     <connections>
                         <outlet property="searchTableView" destination="PKz-8X-MmK" id="juI-Nz-do9"/>
+                        <segue destination="a3w-gO-k4X" kind="show" identifier="toDetail" destinationCreationSelector="toDetailSegue:" id="zjB-1W-6TL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-49.295774647887328"/>
+        </scene>
+        <!--pokemonDetailView-->
+        <scene sceneID="3rT-5J-TMi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PokemonDetailView" referencedIdentifier="pokemonDetailView" id="a3w-gO-k4X" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zkR-nO-ka3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1Y-Yp-ErG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="-44"/>
         </scene>
     </scenes>
     <resources>

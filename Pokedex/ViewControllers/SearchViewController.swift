@@ -24,6 +24,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         searchTableView.delegate = self
         searchTableView.reloadData()
         
+
+        
         
     }
     
@@ -36,9 +38,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 self.pokemon = pokemon
             
             // TODO: delete this
+            let evo = try await PokemonController.getEvolutionChain(1)
+            
             let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
-            if let typeRelations {
-                
+            if let typeRelations, let evo {
+                print(evo)
                 print(typeRelations)
             }
             

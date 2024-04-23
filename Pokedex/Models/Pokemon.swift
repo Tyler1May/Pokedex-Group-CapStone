@@ -13,6 +13,7 @@ struct Pokemon: Codable {
     var sprites: PokemonSprites
     var id: Int
     var stats: [PokemonStatsContainer]
+    var isFavorite: Bool?
     
     }
 

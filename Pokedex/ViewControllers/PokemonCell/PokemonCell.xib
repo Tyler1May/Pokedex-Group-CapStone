@@ -89,6 +89,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="likeButton" destination="zQw-hg-zTU" id="8zh-bl-SRv"/>
                 <outlet property="pokemonImage" destination="D0j-Ed-QL4" id="Je1-DB-P95"/>
                 <outlet property="pokemonName" destination="xdM-rq-FcE" id="fLO-AW-Rc0"/>
                 <outlet property="pokemonNumber" destination="pOG-q6-jdM" id="DCL-GH-kOr"/>

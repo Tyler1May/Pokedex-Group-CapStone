@@ -35,6 +35,7 @@
                     </view>
                     <connections>
                         <outlet property="favoriteTableView" destination="n7z-NE-0MR" id="LKe-tF-mwk"/>
+                        <outlet property="searchBar" destination="Tgz-YX-tnB" id="Qw6-1U-6tX"/>
                         <segue destination="L9v-aA-Rgq" kind="show" identifier="toDetail" destinationCreationSelector="toDetailSegue:" id="n50-T3-eAi"/>
                     </connections>
                 </viewController>

@@ -9,12 +9,12 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
     func didTapLikeButton(for pokemon: Pokemon) {
-        if pokemon.isFavorite! {
+        if !fav.isPokemonFavorite(pokemon) {
             fav.addFavoritePokemon(pokemon)
         } else {
-            fav.removeFavoritePokemon(pokemon)
+            _ = fav.removeFavoritePokemon(pokemon)
         }
-//        searchTableView.reloadData()
+        searchTableView.reloadData()
     }
     
     

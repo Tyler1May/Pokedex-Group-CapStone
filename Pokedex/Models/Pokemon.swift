@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct Pokemon: Codable {
+struct Pokemon: Codable, Identifiable {
     var name: String
     var types: [PokemonTypeContainer]
     var sprites: PokemonSprites
     var id: Int
     var stats: [PokemonStatsContainer]
-    var isFavorite: Bool?
     
     }
 

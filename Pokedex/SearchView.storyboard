@@ -34,6 +34,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="372-IQ-tON" id="DBw-jC-vw8"/>
                         <outlet property="searchTableView" destination="PKz-8X-MmK" id="juI-Nz-do9"/>
                         <segue destination="a3w-gO-k4X" kind="show" identifier="toDetail" destinationCreationSelector="toDetailSegue:" id="zjB-1W-6TL"/>
                     </connections>

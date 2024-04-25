@@ -12,6 +12,8 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     @IBOutlet var favoriteTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
+    typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
+    var dataSource: PokemonDiffableDataSource!
     let fav = FavoriteController.shared
     var filteredFavorites: [Pokemon] = []
     var isSearching = false
@@ -21,9 +23,16 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
         
         favoriteTableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
         favoriteTableView.delegate = self
-        favoriteTableView.dataSource = self
         
-        favoriteTableView.reloadData()
+        dataSource = PokemonDiffableDataSource(tableView: favoriteTableView) { tableView, indexPath, pokemon in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
+            cell.delegate = self
+            cell.update(with: pokemon)
+            return cell
+        }
+        favoriteTableView.dataSource = dataSource
+        
+        applySnapshot()
         
         searchBar.delegate = self
 
@@ -31,8 +40,14 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        favoriteTableView.reloadData()
+        applySnapshot()
+    }
+    
+    func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Pokemon>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(isSearching ? filteredFavorites : fav.favPokemon, toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     func didTapLikeButton(for pokemon: Pokemon) {
@@ -41,7 +56,7 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
         } else {
             _ = fav.removeFavoritePokemon(pokemon)
         }
-        favoriteTableView.reloadData()
+        applySnapshot()
     }
     
     @IBSegueAction func toDetailSegue(_ coder: NSCoder) -> UIViewController? {
@@ -51,12 +66,11 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             isSearching = false
-            favoriteTableView.reloadData()
         } else {
             isSearching = true
             filteredFavorites = fav.favPokemon.filter( {$0.name.lowercased().contains(searchText.lowercased())} )
-            favoriteTableView.reloadData()
         }
+        applySnapshot()
     }
         
 

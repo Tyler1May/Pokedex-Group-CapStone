@@ -49,7 +49,7 @@ class PokemonCell: UITableViewCell {
     
     @IBAction func favortieButton(_ sender: Any) {
         
-        if var pokemon = pokemon {
+        if let pokemon = pokemon {
             if !fav.isPokemonFavorite(pokemon) {
                 delegate?.didTapLikeButton(for: pokemon)
             } else {

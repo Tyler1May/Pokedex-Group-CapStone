@@ -7,11 +7,21 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
+    func didTapLikeButton(for pokemon: Pokemon) {
+        if !fav.isPokemonFavorite(pokemon) {
+            fav.addFavoritePokemon(pokemon)
+        } else {
+            _ = fav.removeFavoritePokemon(pokemon)
+        }
+        searchTableView.reloadData()
+    }
+    
     
     @IBOutlet var searchTableView: UITableView!
     
     var pokemon: [Pokemon] = []
+    var fav = FavoriteController.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +32,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        searchTableView.reloadData()
-        
-
-        
-        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        searchTableView.reloadData()
+    }
+        
     
     func displayGenericPokemon() {
         
@@ -68,14 +80,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
         
         cell.update(with: pokemon[indexPath.row])
+        cell.delegate = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            // Perform the segue when a row is selected
-            performSegue(withIdentifier: "toDetail", sender: nil)
-        }
+        performSegue(withIdentifier: "toDetail", sender: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "toDetail" {
@@ -111,6 +123,5 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    
-    
 }
+

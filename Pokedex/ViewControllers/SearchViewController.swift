@@ -8,30 +8,26 @@
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
-    func didTapLikeButton(for pokemon: Pokemon) {
-        if !fav.isPokemonFavorite(pokemon) {
-            fav.addFavoritePokemon(pokemon)
-        } else {
-            _ = fav.removeFavoritePokemon(pokemon)
-        }
-        searchTableView.reloadData()
-    }
-    
     
     @IBOutlet var searchTableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
+    typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
+    var dataSource: PokemonDiffableDataSource!
     var pokemon: [Pokemon] = []
     var fav = FavoriteController.shared
+    var filteredPokemon: [Pokemon] = []
+    var isSearching = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
+        configureDataSource()
         displayGenericPokemon()
         
-        searchTableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
+        searchBar.delegate = self
         
-        searchTableView.dataSource = self
-        searchTableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,28 +35,69 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         
         searchTableView.reloadData()
     }
+    
+    func configureTableView() {
+        searchTableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonCell")
+        searchTableView.delegate = self
+    }
+    
+    func configureDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Pokemon>(tableView: searchTableView) { tableView, indexPath, pokemon in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
+            cell.update(with: pokemon)
+            cell.delegate = self
+            return cell
+        }
+    }
+    
+    func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Pokemon>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(isSearching ? filteredPokemon : pokemon)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
         
     
     func displayGenericPokemon() {
-        
         Task {
-            let pokemon = try? await PokemonController.getGenericPokemon()
-            guard let pokemon else { return }
-            
+            do {
+                let pokemon = try await PokemonController.getGenericPokemon()
                 self.pokemon = pokemon
-            
-            // TODO: delete this
-            let evo = try await PokemonController.getEvolutionChain(1)
-            
-            let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
-            if let typeRelations, let evo {
-                print(evo)
-                print(typeRelations)
+                applySnapshot()
+            } catch {
+                print("error fetching Generic Pokemon: \(error.localizedDescription)")
             }
-            
-            searchTableView.reloadData()
         }
-
+    }
+//    func displayGenericPokemon() {
+//        
+//        Task {
+//            let pokemon = try? await PokemonController.getGenericPokemon()
+//            guard let pokemon else { return }
+//            
+//                self.pokemon = pokemon
+//            
+//            // TODO: delete this
+//            let evo = try await PokemonController.getEvolutionChain(1)
+//            
+//            let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
+//            if let typeRelations, let evo {
+//                print(evo)
+//                print(typeRelations)
+//            }
+//            
+//            searchTableView.reloadData()
+//        }
+//
+//    }
+    
+    func didTapLikeButton(for pokemon: Pokemon) {
+        if !fav.isPokemonFavorite(pokemon) {
+            fav.addFavoritePokemon(pokemon)
+        } else {
+            _ = fav.removeFavoritePokemon(pokemon)
+        }
+        searchTableView.reloadData()
     }
     
     @IBSegueAction func toDetailSegue(_ coder: NSCoder) -> PokemonDetailViewController? {
@@ -78,8 +115,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
-        
-        cell.update(with: pokemon[indexPath.row])
+        let pokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
+        cell.update(with: pokemon)
         cell.delegate = self
         
         return cell
@@ -91,7 +128,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "toDetail" {
-                // Get the destination view controller and set its properties if needed
                 if let destinationVC = segue.destination as? PokemonDetailViewController {
                     if let selectedIndexPath = searchTableView.indexPathForSelectedRow {
                         destinationVC.pokemon = pokemon[selectedIndexPath.row]
@@ -103,23 +139,21 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // If the text is empty bring the generic pokemon back to the screen
-        if searchBar.text ?? "" == "" {
-            displayGenericPokemon()
-            return
-        }
-        
-        // Display the searched pokemon
-        Task {
-            do {
-                if let searchedPokemon = try await PokemonController.getSpecificPokemon(pokemonName: searchBar.text ?? "") {
-                    pokemon = [searchedPokemon]
-                    searchTableView.reloadData()
+        if let searchText = searchBar.text, !searchText.isEmpty {
+            Task {
+                do {
+                    if let searchedPokemon = try await PokemonController.getSpecificPokemon(pokemonName: searchText) {
+                        isSearching = true
+                        filteredPokemon = [searchedPokemon]
+                        applySnapshot()
+                    }
+                } catch {
+                    print("Error searching Pokemon: \(error.localizedDescription)")
                 }
-            } catch {
-                // TODO: Handle errors
-                print(error)
             }
+        } else {
+            isSearching = false
+            displayGenericPokemon()
         }
     }
     

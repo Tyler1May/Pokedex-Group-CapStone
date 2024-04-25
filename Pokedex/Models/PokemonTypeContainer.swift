@@ -12,3 +12,10 @@ struct PokemonTypeContainer: Codable {
     var type: PokemonType
 
 }
+
+extension PokemonTypeContainer: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(slot)
+        hasher.combine(type)
+    }
+}

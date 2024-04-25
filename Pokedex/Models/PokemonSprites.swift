@@ -11,3 +11,10 @@ struct PokemonSprites: Codable {
     var front_default: URL
     var back_default: URL
 }
+
+extension PokemonSprites: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(front_default)
+        hasher.combine(back_default)
+    }
+}

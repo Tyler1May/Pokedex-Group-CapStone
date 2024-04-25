@@ -49,15 +49,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
             
                 self.pokemon = pokemon
             
-            // TODO: delete this
-            let evo = try await PokemonController.getEvolutionChain(1)
-            
-            let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
-            if let typeRelations, let evo {
-                print(evo)
-                print(typeRelations)
-            }
-            
             searchTableView.reloadData()
         }
 
@@ -123,5 +114,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+<<<<<<< Updated upstream
+=======
+
+    
+>>>>>>> Stashed changes
 }
 

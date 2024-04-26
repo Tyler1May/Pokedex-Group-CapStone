@@ -14,6 +14,7 @@ struct Pokemon: Codable, Identifiable, Equatable {
     var sprites: PokemonSprites
     var id: Int
     var stats: [PokemonStatsContainer]
+    var moves: [PokemonMoveContainer]
     
     static func==(lhs: Pokemon, rhs: Pokemon) -> Bool {
         return lhs.id == rhs.id

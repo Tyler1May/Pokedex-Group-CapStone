@@ -28,6 +28,7 @@ struct EvolutionChain: Codable {
         case species
     }
 }
+
 struct SpeciesContainer: Codable {
     let name: String
     let url: String

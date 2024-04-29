@@ -33,6 +33,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="v0E-I3-0hz"/>
                     <connections>
                         <outlet property="searchBar" destination="372-IQ-tON" id="DBw-jC-vw8"/>
                         <outlet property="searchTableView" destination="PKz-8X-MmK" id="juI-Nz-do9"/>
@@ -41,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-49.295774647887328"/>
+            <point key="canvasLocation" x="1057.2519083969464" y="-49.295774647887328"/>
         </scene>
         <!--pokemonDetailView-->
         <scene sceneID="3rT-5J-TMi">
@@ -51,7 +52,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1Y-Yp-ErG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="-44"/>
+            <point key="canvasLocation" x="1682.4427480916029" y="-44.366197183098592"/>
         </scene>
     </scenes>
     <resources>

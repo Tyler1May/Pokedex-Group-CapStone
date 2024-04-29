@@ -20,6 +20,14 @@ struct Pokemon: Codable, Identifiable, Equatable {
         return lhs.id == rhs.id
     }
     
+    init(name: String, types: [PokemonTypeContainer], sprites: PokemonSprites, id: Int, stats: [PokemonStatsContainer]) {
+        self.name = name
+        self.types = types
+        self.sprites = sprites
+        self.id = id
+        self.stats = stats
+    }
+    
     }
 
 struct PokemonStatsContainer: Codable {

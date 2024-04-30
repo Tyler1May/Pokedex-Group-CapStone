@@ -147,7 +147,7 @@ struct PokemonController {
         }
     }
     
-    static func getPokemonSpecies(_ pokemonID: Int) async throws -> PokemonSpecies? {
+    static func getPokemonSpecies(_ pokemonID: Int) async throws -> PokemonSpeciesContainer? {
     let session = URLSession.shared
     let url = URLComponents(string:"\(API.url)/pokemon-species/\(pokemonID)")!
     
@@ -177,7 +177,7 @@ struct PokemonController {
     let decoder = JSONDecoder()
     print("!!! data: \( data))")
     do {
-        let pokemonSpecies = try decoder.decode(PokemonSpecies.self, from: data)
+        let pokemonSpecies = try decoder.decode(PokemonSpeciesContainer.self, from: data)
         return pokemonSpecies
     } catch {
         return nil

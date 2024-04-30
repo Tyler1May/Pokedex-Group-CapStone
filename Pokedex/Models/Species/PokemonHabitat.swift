@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PokemonHabitat: Codable {
+struct PokemonHabitatContainer: Codable {
     
 }

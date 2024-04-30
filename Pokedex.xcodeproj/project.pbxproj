@@ -28,7 +28,7 @@
 		EADF971E2BDBFCFF00E90AC5 /* Moves.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF971D2BDBFCFF00E90AC5 /* Moves.swift */; };
 		EADF97212BDC01D700E90AC5 /* PokemonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF97202BDC01D700E90AC5 /* PokemonColor.swift */; };
 		EADF97232BDC02AD00E90AC5 /* PokemonHabitat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF97222BDC02AD00E90AC5 /* PokemonHabitat.swift */; };
-		EADF97252BDC055400E90AC5 /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF97242BDC055400E90AC5 /* PokemonSpecies.swift */; };
+		EADF97252BDC055400E90AC5 /* PokemonSpeciesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF97242BDC055400E90AC5 /* PokemonSpeciesContainer.swift */; };
 		EADF97272BDC0A0F00E90AC5 /* PokemonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF97262BDC0A0F00E90AC5 /* PokemonShape.swift */; };
 		F74E6BA32BD2B503001E3C27 /* PokemonDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E6BA22BD2B503001E3C27 /* PokemonDetailView.storyboard */; };
 		F74E6BA52BD2B516001E3C27 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E6BA42BD2B516001E3C27 /* PokemonDetailViewController.swift */; };
@@ -70,7 +70,7 @@
 		EADF971D2BDBFCFF00E90AC5 /* Moves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moves.swift; sourceTree = "<group>"; };
 		EADF97202BDC01D700E90AC5 /* PokemonColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonColor.swift; sourceTree = "<group>"; };
 		EADF97222BDC02AD00E90AC5 /* PokemonHabitat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonHabitat.swift; sourceTree = "<group>"; };
-		EADF97242BDC055400E90AC5 /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
+		EADF97242BDC055400E90AC5 /* PokemonSpeciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpeciesContainer.swift; sourceTree = "<group>"; };
 		EADF97262BDC0A0F00E90AC5 /* PokemonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonShape.swift; sourceTree = "<group>"; };
 		F74E6BA22BD2B503001E3C27 /* PokemonDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PokemonDetailView.storyboard; sourceTree = "<group>"; };
 		F74E6BA42BD2B516001E3C27 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		EADF971F2BDC01A300E90AC5 /* Species */ = {
 			isa = PBXGroup;
 			children = (
-				EADF97242BDC055400E90AC5 /* PokemonSpecies.swift */,
+				EADF97242BDC055400E90AC5 /* PokemonSpeciesContainer.swift */,
 				EADF97202BDC01D700E90AC5 /* PokemonColor.swift */,
 				EADF97222BDC02AD00E90AC5 /* PokemonHabitat.swift */,
 				EADF97262BDC0A0F00E90AC5 /* PokemonShape.swift */,
@@ -300,7 +300,7 @@
 				A38B13032B4EEE28003D33D8 /* PokemonController.swift in Sources */,
 				F7EDCAAE2BCED6D3000EAAD1 /* MyTeamViewController.swift in Sources */,
 				EA934D772BCECDD10070EFC7 /* PokemonCell.swift in Sources */,
-				EADF97252BDC055400E90AC5 /* PokemonSpecies.swift in Sources */,
+				EADF97252BDC055400E90AC5 /* PokemonSpeciesContainer.swift in Sources */,
 				A38B13002B4EED94003D33D8 /* PokemonSprites.swift in Sources */,
 				F7597CE42BD808D800F2816A /* FavoriteController.swift in Sources */,
 				EADF97212BDC01D700E90AC5 /* PokemonColor.swift in Sources */,

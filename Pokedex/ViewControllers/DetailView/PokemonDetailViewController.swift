@@ -14,6 +14,7 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
     
     var pokemon: Pokemon?
+    var evo: PokemonEvolutionContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class PokemonDetailViewController: UIViewController {
         
         // Create PokemonImageView
         let images = (pokemon?.sprites)!
-        let pokemonImageView = UIHostingController(rootView: PokemonImageView(image: images))
+        let evo = self.evo
+        let pokemonImageView = UIHostingController(rootView: PokemonImageView(image: images, evo: evo))
         addChild(pokemonImageView)
         view.addSubview(pokemonImageView.view)
         pokemonImageView.didMove(toParent: self)
@@ -106,5 +108,5 @@ class PokemonDetailViewController: UIViewController {
                 pokemonStatChartView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // last element, constrain to bottom of contentView
             ])
     }
-
+    
 }

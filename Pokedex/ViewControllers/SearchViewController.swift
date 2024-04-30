@@ -106,18 +106,30 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetail", sender: nil)
+        let selectedPokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
+        Task {
+            do {
+                let evo = try await PokemonController.getEvolutionChain(selectedPokemon.id)
+                
+                performSegue(withIdentifier: "toDetail", sender: (selectedPokemon, evo))
+            } catch {
+                print("Error fetching evolution Chain: \(error.localizedDescription)")
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toDetail" {
-                if let destinationVC = segue.destination as? PokemonDetailViewController {
-                    if let selectedIndexPath = searchTableView.indexPathForSelectedRow {
-                        destinationVC.pokemon = pokemon[selectedIndexPath.row]
-                    }
+        if segue.identifier == "toDetail" {
+            if let destinationVC = segue.destination as? PokemonDetailViewController {
+                if let sender = sender as? (Pokemon, PokemonEvolutionContainer) {
+                    // Unpack the sender tuple and pass the data to the destination view controller
+                    destinationVC.pokemon = sender.0
+                    destinationVC.evo = sender.1
                 }
             }
         }
+    }
     
     
     

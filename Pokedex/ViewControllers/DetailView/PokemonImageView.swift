@@ -9,44 +9,58 @@ import SwiftUI
 
 struct PokemonImageView: View {
     var image: PokemonSprites?
+    var evo: PokemonEvolutionContainer?
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 10) {
-                VStack(alignment: .center) {
-                    AsyncImage(url: URL(string: "\(image)")) { image in
-                        image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 325, height: 80)
-                } placeholder: {
-                    ProgressView()
+                ForEach(extractEvolutionSpecies(from: evo?.chain), id: \.self) { species in
+                    EvolutionView(species: species)
                 }
-                    Text("Evo 1")
-                        .font(.title)
-                }
-                
-                VStack(alignment: .center) {
-                    Image(systemName: "person.fill")
-                        .frame(width: 325, height: 80)
-                    Text("Evo 2")
-                        .font(.title)
-                }
-                
-                VStack(alignment: .center) {
-                    Image(systemName: "person.circle.fill")
-                        .frame(width: 325, height: 80)
-                    Text("Evo 3")
-                        .font(.title)
-                }
-                
             }
         }
         .padding()
         .background(Color(.systemGray6))
-        .clipShape(RoundedShape(corners: [.allCorners]))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding()
         .shadow(radius: 10)
+    }
+    
+    func extractEvolutionSpecies(from chain: EvolutionChain?) -> [SpeciesContainer] {
+        var species: [SpeciesContainer] = []
+        
+        func traverseChain(_ chain: EvolutionChain?) {
+            guard let chain = chain else { return }
+            species.append(chain.species)
+            
+            for evolution in chain.evolvesTo {
+                traverseChain(evolution)
+            }
+        }
+        
+        traverseChain(chain)
+        
+        return species
+    }
+    
+}
+
+struct EvolutionView: View {
+    let species: SpeciesContainer
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            AsyncImage(url: URL(string: "\(species.url)")) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 325, height: 80)
+            } placeholder: {
+                ProgressView()
+            }
+            Text(species.name.capitalized)
+                .font(.title)
+        }
     }
 }
 

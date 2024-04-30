@@ -102,24 +102,27 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            performSegue(withIdentifier: "toDetail", sender: nil)
+        let selectedPokemon = isSearching ? filteredFavorites[indexPath.row] : fav.favPokemon[indexPath.row]
+        Task {
+            do {
+                let evo = try await PokemonController.getEvolutionChain(selectedPokemon.id)
+                performSegue(withIdentifier: "toDetail", sender: (selectedPokemon, evo))
+            } catch {
+                print("Error Fetching Evolution Chain: \(error.localizedDescription)")
+            }
         }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toDetail" {
-                if let destinationVC = segue.destination as? PokemonDetailViewController {
-                    if let selectedIndexPath = favoriteTableView.indexPathForSelectedRow {
-                        let pokemon: Pokemon
-                        if isSearching {
-                            pokemon = filteredFavorites[selectedIndexPath.row]
-                        } else {
-                            pokemon = fav.favPokemon[selectedIndexPath.row]
-                        }
-                        destinationVC.pokemon = pokemon
-                    }
+        if segue.identifier == "toDetail" {
+            if let destinationVC = segue.destination as? PokemonDetailViewController {
+                if let sender = sender as? (Pokemon, PokemonEvolutionContainer) {
+                    destinationVC.pokemon = sender.0
+                    destinationVC.evo = sender.1
                 }
             }
         }
+    }
     
     
 }

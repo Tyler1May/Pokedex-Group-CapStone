@@ -41,6 +41,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="mwj-L9-c9v"/>
                     <connections>
                         <outlet property="genderLabel" destination="sQJ-ZT-z69" id="Wqi-0F-8Sa"/>
                         <outlet property="nameLabel" destination="Sgy-v9-FUC" id="88t-gx-WwA"/>
@@ -49,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-40.458015267175568" y="-50"/>
+            <point key="canvasLocation" x="886.25954198473278" y="-50"/>
         </scene>
     </scenes>
     <resources>

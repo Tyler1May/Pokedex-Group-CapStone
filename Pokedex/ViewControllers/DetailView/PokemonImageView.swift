@@ -15,7 +15,7 @@ struct PokemonImageView: View {
         ScrollView(.horizontal) {
             HStack(spacing: 10) {
                 ForEach(evoPokemon, id: \.id) { pokemon in
-                        EvolutionView(pokeomon: pokemon)
+                    EvolutionView(pokeomon: pokemon)
                 }
             }
         }
@@ -54,38 +54,6 @@ struct PokemonImageView: View {
                 traverseChain(evolution)
             }
         }
-    
-//    func extractEvolutionSpecies(from chain: EvolutionChain?) -> [SpeciesContainer] {
-//        var species: [SpeciesContainer] = []
-//        
-//        func traverseChain(_ chain: EvolutionChain?) {
-//            guard let chain = chain else { return }
-//            species.append(chain.species)
-//            
-//            for evolution in chain.evolvesTo {
-//                traverseChain(evolution)
-//            }
-//        }
-//        
-//        traverseChain(chain)
-//        return species
-//    }
-//    
-//    func extractPokemonInfo(from species: String) -> Pokemon {
-//        Task {
-//            do {
-//                if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: species) {
-//                    return pokemon
-//                }
-//            } catch {
-//                print("Error fetching pokemon info: \(error.localizedDescription)")
-//            }
-//        }
-//        return
-//    
-//    }
-    
-        
 }
 
 struct EvolutionView: View {

@@ -93,7 +93,11 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemon.count
+        if isSearching {
+            return filteredPokemon.count
+        } else {
+            return pokemon.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

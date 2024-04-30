@@ -48,7 +48,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up constraints for PokemonImageView
         pokemonImageView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 50),
+            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60),
             pokemonImageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokemonImageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -56,7 +56,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up nameLabel constraints
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 50),
+            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 60),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         

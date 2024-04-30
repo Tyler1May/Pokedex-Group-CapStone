@@ -61,6 +61,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
     func displayGenericPokemon() {
         Task {
             do {
+                
+                let species = try await PokemonController.getPokemonSpecies(1)
+                print(species)
+                
                 let pokemon = try await PokemonController.getGenericPokemon()
                 self.pokemon = pokemon
                 applySnapshot()
@@ -69,27 +73,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
             }
         }
     }
-//    func displayGenericPokemon() {
-//        
-//        Task {
-//            let pokemon = try? await PokemonController.getGenericPokemon()
-//            guard let pokemon else { return }
-//            
-//                self.pokemon = pokemon
-//            
-//            // TODO: delete this
-//            let evo = try await PokemonController.getEvolutionChain(1)
-//            
-//            let typeRelations = try? await PokemonController.getPokemonDamageRelatons("grass")
-//            if let typeRelations, let evo {
-//                print(evo)
-//                print(typeRelations)
-//            }
-//            
-//            searchTableView.reloadData()
-//        }
-//
-//    }
     
     func didTapLikeButton(for pokemon: Pokemon) {
         if !fav.isPokemonFavorite(pokemon) {

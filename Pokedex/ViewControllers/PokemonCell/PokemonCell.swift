@@ -14,6 +14,7 @@ import UIKit
 
 protocol UpdateCellDelegate: AnyObject {
     func didTapLikeButton(for pokemon: Pokemon)
+    func didTapTeamButton(for pokemon: Pokemon)
 }
 
 class PokemonCell: UITableViewCell {
@@ -24,6 +25,7 @@ class PokemonCell: UITableViewCell {
     
     @IBOutlet weak var pokemonImage: UIImageView!
     @IBOutlet var likeButton: UIButton!
+    @IBOutlet var myTeamButton: UIButton!
     
     weak var delegate: UpdateCellDelegate?
     var fav = FavoriteController.shared
@@ -45,6 +47,15 @@ class PokemonCell: UITableViewCell {
         self.pokemon = pokemon
         updateLikeButton()
         
+    }
+    
+    
+    @IBAction func addToTeamButtonTapped(_ sender: Any) {
+        if let pokemon = pokemon {
+            delegate?.didTapTeamButton(for: pokemon)
+        } else {
+            print("Nope")
+        }
     }
     
     @IBAction func favortieButton(_ sender: Any) {

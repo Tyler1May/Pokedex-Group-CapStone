@@ -50,6 +50,10 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
+    func didTapTeamButton(for pokemon: Pokemon) {
+        print("test")
+    }
+    
     func didTapLikeButton(for pokemon: Pokemon) {
         if !fav.isPokemonFavorite(pokemon) {
             fav.addFavoritePokemon(pokemon)

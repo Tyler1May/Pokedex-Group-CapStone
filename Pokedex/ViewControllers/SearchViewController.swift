@@ -8,6 +8,10 @@
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
+    func didTapTeamButton(for pokemon: Pokemon) {
+        print("test")
+    }
+    
     
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!

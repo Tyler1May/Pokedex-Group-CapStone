@@ -13,4 +13,10 @@ struct PokemonType: Codable {
     
 }
 
+extension PokemonType: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(url)
+    }
+}
 

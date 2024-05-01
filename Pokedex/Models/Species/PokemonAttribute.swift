@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct PokemonShape: Codable {
+struct PokemonAttribute: Codable {
     let name: String
-
+    let url: String
 }

@@ -14,13 +14,13 @@ struct PokemonSpeciesContainer: Codable {
     let baseHappiness: Int?
     let captureRate: Int?
     
-    let color: PokemonColor?
-    let shape: PokemonShape?
+    let color: PokemonAttribute?
+    let shape: PokemonAttribute?
     
     let isLegendary: Bool?
     let isMythical: Bool?
     
-    let evolvesFrom: EvolvesFrom?
+    let evolvesFrom: PokemonSpecies?
     let habitat: PokemonHabitat?
     
     enum CodingKeys: String, CodingKey {
@@ -28,10 +28,6 @@ struct PokemonSpeciesContainer: Codable {
     }
 }
 
-struct EvolvesFrom: Codable {
-    let name: String
-    let url: String
-}
 
 struct PokemonHabitat: Codable {
     let name: String

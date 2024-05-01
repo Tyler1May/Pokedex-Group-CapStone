@@ -8,6 +8,10 @@
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
+    func didTapTeamButton(for pokemon: Pokemon) {
+        print("test")
+    }
+    
     
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -62,11 +66,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         Task {
             do {
                 
-<<<<<<< Updated upstream
-                let species = try await PokemonController.getPokemonSpecies(1)
+                let species = try await PokemonController.getPokemonByColor("1")
                 print(species)
-=======
->>>>>>> Stashed changes
                 
                 let pokemon = try await PokemonController.getGenericPokemon()
                 self.pokemon = pokemon

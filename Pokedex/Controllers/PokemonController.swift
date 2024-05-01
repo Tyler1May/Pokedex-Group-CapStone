@@ -148,41 +148,78 @@ struct PokemonController {
     }
     
     static func getPokemonSpecies(_ pokemonID: Int) async throws -> PokemonSpeciesContainer? {
-    let session = URLSession.shared
-    let url = URLComponents(string:"\(API.url)/pokemon-species/\(pokemonID)")!
-    
-    let request = URLRequest(url: url.url!)
-    
-    var data: Data
-    var response: URLResponse
-    
-    do {
-        let (httpData, httpResponse) = try await session.data(for: request)
-        data = httpData
-        response = httpResponse
-    } catch {
-        throw error
+        let session = URLSession.shared
+        let url = URLComponents(string:"\(API.url)/pokemon-species/\(pokemonID)")!
+        
+        let request = URLRequest(url: url.url!)
+        
+        var data: Data
+        var response: URLResponse
+        
+        do {
+            let (httpData, httpResponse) = try await session.data(for: request)
+            data = httpData
+            response = httpResponse
+        } catch {
+            throw error
+        }
+        
+        // Ensure we had a good response (status 200)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            // TODO: Currently an error is thrown if there is no pokemon by the given name.
+            // Would be better if nil is returned when there is no pokemon
+            // Then return an error for any other errors.
+            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
+            throw API.APIError.SpecificPokemonRequestFailed
+        }
+        
+        // Decode the pokemon
+        let decoder = JSONDecoder()
+        print("!!! data: \( data))")
+        do {
+            let pokemonSpecies = try decoder.decode(PokemonSpeciesContainer.self, from: data)
+            return pokemonSpecies
+        } catch {
+            return nil
+        }
     }
     
-    // Ensure we had a good response (status 200)
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        // TODO: Currently an error is thrown if there is no pokemon by the given name.
-        // Would be better if nil is returned when there is no pokemon
-        // Then return an error for any other errors.
-        // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-        throw API.APIError.SpecificPokemonRequestFailed
+    static func getPokemonByColor(_ color: String) async throws -> PokemonAttributeContainer? {
+        let session = URLSession.shared
+        let url = URLComponents(string:"\(API.url)/pokemon-color/\(color)")!
+        
+        let request = URLRequest(url: url.url!)
+        
+        var data: Data
+        var response: URLResponse
+        
+        do {
+            let (httpData, httpResponse) = try await session.data(for: request)
+            data = httpData
+            response = httpResponse
+        } catch {
+            throw error
+        }
+        
+        // Ensure we had a good response (status 200)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            // TODO: Currently an error is thrown if there is no pokemon by the given name.
+            // Would be better if nil is returned when there is no pokemon
+            // Then return an error for any other errors.
+            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
+            throw API.APIError.SpecificPokemonRequestFailed
+        }
+        
+        // Decode the pokemon
+        let decoder = JSONDecoder()
+        
+        do {
+            let pokemonSpecies = try decoder.decode(PokemonAttributeContainer.self, from: data)
+            return pokemonSpecies
+        } catch {
+            return nil
+        }
     }
-    
-    // Decode the pokemon
-    let decoder = JSONDecoder()
-    print("!!! data: \( data))")
-    do {
-        let pokemonSpecies = try decoder.decode(PokemonSpeciesContainer.self, from: data)
-        return pokemonSpecies
-    } catch {
-        return nil
-    }
-}
     
         static func getEvolutionChain(_ pokemonID: Int) async throws -> PokemonEvolutionContainer? {
         let session = URLSession.shared

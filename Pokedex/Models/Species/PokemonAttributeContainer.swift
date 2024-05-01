@@ -7,9 +7,17 @@
 
 import Foundation
 
+// TODO: list in comments every URL query/attribute that decodes to this type
 
-struct PokemonColor: Codable {
+struct PokemonAttributeContainer: Codable {
+    let id: Int
     let name: String
+    let pokemonSpecies: [PokemonSpecies?]
+    enum CodingKeys: String, CodingKey {
+        case pokemonSpecies = "pokemon_species", name, id
+    }
+    
+    
 }
 
 

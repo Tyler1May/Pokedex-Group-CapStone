@@ -62,7 +62,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         Task {
             do {
                 
-                let species = try await PokemonController.getPokemonSpecies(1)
+                let species = try await PokemonController.getPokemonByColor("1")
                 print(species)
                 
                 let pokemon = try await PokemonController.getGenericPokemon()

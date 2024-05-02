@@ -66,8 +66,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         Task {
             do {
                 
-                let species = try await PokemonController.getPokemonByColor("1")
-                print(species)
+
+                let species = try await PokemonController.getPokemonSpecies(1)
+//                print(species)
                 
                 let pokemon = try await PokemonController.getGenericPokemon()
                 self.pokemon = pokemon
@@ -118,8 +119,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         Task {
             do {
                 let evo = try await PokemonController.getEvolutionChain(selectedPokemon.id)
+                let species = try await PokemonController.getPokemonSpecies(selectedPokemon.id)
                 
-                performSegue(withIdentifier: "toDetail", sender: (selectedPokemon, evo))
+                performSegue(withIdentifier: "toDetail", sender: (selectedPokemon, evo, species))
             } catch {
                 print("Error fetching evolution Chain: \(error.localizedDescription)")
             }
@@ -130,10 +132,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail" {
             if let destinationVC = segue.destination as? PokemonDetailViewController {
-                if let sender = sender as? (Pokemon, PokemonEvolutionContainer) {
-                    // Unpack the sender tuple and pass the data to the destination view controller
+                if let sender = sender as? (Pokemon, PokemonEvolutionContainer, PokemonSpeciesContainer) {
                     destinationVC.pokemon = sender.0
                     destinationVC.evo = sender.1
+                    destinationVC.species = sender.2
                 }
             }
         }

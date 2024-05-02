@@ -15,6 +15,7 @@ class PokemonDetailViewController: UIViewController {
     
     var pokemon: Pokemon?
     var evo: PokemonEvolutionContainer?
+    var species: PokemonSpeciesContainer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,8 @@ class PokemonDetailViewController: UIViewController {
         
         // Create PokemonImageView
         let evo = self.evo
-        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo))
+        let species = self.species
+        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo, species: species))
         addChild(pokemonImageView)
         view.addSubview(pokemonImageView.view)
         pokemonImageView.didMove(toParent: self)

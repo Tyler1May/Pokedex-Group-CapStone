@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PokemonImageView: View {
     var evo: PokemonEvolutionContainer?
+    var species: PokemonSpeciesContainer?
     @State var evoPokemon: [Pokemon] = []
     
     var body: some View {
@@ -31,18 +32,65 @@ struct PokemonImageView: View {
     
     func fetchPokeomonData() {
         guard let chain = evo?.chain else { return }
-        traverseChain(chain)
+        
+        var FirstEvoName = ""
+            
+        if species?.evolvesFrom == nil {
+            // If evolvesFrom is nil, it's the first in the chain
+            if let speciesName = species?.name {
+                Task {
+                    do {
+                        if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: speciesName) {
+                            DispatchQueue.main.async {
+                                evoPokemon.insert(pokemon, at: 0)
+                                FirstEvoName = pokemon.name
+                                traverseChain(chain)
+                            }
+                        }
+                    } catch {
+                        print("Error fetching pokemon info: \(error.localizedDescription)")
+                    }
+                }
+            }
+        } else {
+            // If evolvesFrom is not nil, fetch its data first
+            if let evolvesFromName = species?.evolvesFrom?.name {
+                Task {
+                    do {
+                        if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: evolvesFromName) {
+                            DispatchQueue.main.async {
+                                if evolvesFromName == FirstEvoName {
+                                    evoPokemon.insert(pokemon, at: 1)
+                                } else {
+                                    evoPokemon.append(pokemon)
+                                }
+                                traverseChain(chain)
+                            }
+                        }
+                    } catch {
+                        print("Error fetching pokemon info: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+        
+        // Continue traversing the evolution chain
+//        traverseChain(chain)
     }
     
     func traverseChain(_ chain: EvolutionChain?) {
-            guard let chain = chain else { return }
-            
+        guard let chain = chain else { return }
+        
         let speciesName = chain.species.name
+        let isAlreadyAdded = evoPokemon.contains { $0.name == speciesName }
+        
             Task {
                 do {
                     if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: speciesName) {
                         DispatchQueue.main.async {
-                            evoPokemon.append(pokemon)
+                            if !isAlreadyAdded {
+                                evoPokemon.append(pokemon)
+                            }
                         }
                     }
                 } catch {

@@ -48,32 +48,16 @@ struct PokemonController {
         
         
         for pokemonResult in pokemonGenericSearch.results {
-            request = URLRequest(url: pokemonResult.url)
-            do {
-                let (httpData, httpResponse) = try await session.data(for: request)
-                data = httpData
-                response = httpResponse
-            } catch {
-                throw error
+
+            if let singlePokemon = try await getSpecificPokemon(pokemonName: pokemonResult.name) {
+                
+                pokemon.append(singlePokemon)
             }
-            
-            // Ensure we had a good response (status 200)
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw API.APIError.SpecificPokemonRequestFailed
-            }
-            
-            // Decode the pokemon
-            let decoder = JSONDecoder()
-            let singlePokemon = try decoder.decode(Pokemon.self, from: data)
-            pokemon.append(singlePokemon)
         }
         
         return pokemon
     }
     
-    /// An API call to get a singular pokemon
-    /// - Parameter name: The pokemons name to search for
-    /// - Returns: An optional pokemon.
     static func getSpecificPokemon(pokemonName name: String) async throws -> Pokemon? {
         let session = URLSession.shared
         let url = URLComponents(string: "\(API.url)/pokemon/\(name.lowercased())")!
@@ -91,13 +75,13 @@ struct PokemonController {
             throw error
         }
         
-        // Ensure we had a good response (status 200)
+        
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
+
             throw API.APIError.SpecificPokemonRequestFailed
+        }
+        if httpResponse.statusCode == 404 {
+            return nil
         }
         
         // Decode the pokemon
@@ -129,11 +113,8 @@ struct PokemonController {
         
         // Ensure we had a good response (status 200)
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-            throw API.APIError.SpecificPokemonRequestFailed
+
+            throw API.APIError.DamageRelationsRequestFailed
         }
         
         // Decode the pokemon
@@ -166,11 +147,7 @@ struct PokemonController {
         
         // Ensure we had a good response (status 200)
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-            throw API.APIError.SpecificPokemonRequestFailed
+            throw API.APIError.PokemonSpeciesRequestFailed
         }
         
         // Decode the pokemon
@@ -201,13 +178,9 @@ struct PokemonController {
             throw error
         }
         
-        // Ensure we had a good response (status 200)
+        
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-            throw API.APIError.SpecificPokemonRequestFailed
+            throw API.APIError.PokemonColorRequestFailed
         }
         
         // Decode the pokemon
@@ -238,13 +211,9 @@ struct PokemonController {
             throw error
         }
         
-        // Ensure we had a good response (status 200)
+    
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-            throw API.APIError.SpecificPokemonRequestFailed
+            throw API.APIError.EvolutionChainRequestFailed
         }
         
         // Decode the pokemon

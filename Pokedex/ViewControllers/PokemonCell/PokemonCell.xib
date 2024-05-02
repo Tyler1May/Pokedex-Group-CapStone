@@ -72,7 +72,7 @@
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                             <connections>
-                                                                <action selector="favortieButton:" destination="PkQ-tf-wPo" eventType="touchUpInside" id="rg2-rE-hBL"/>
+                                                                <action selector="favoriteButton:" destination="PkQ-tf-wPo" eventType="touchUpInside" id="rg2-rE-hBL"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>

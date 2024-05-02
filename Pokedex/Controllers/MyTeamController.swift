@@ -17,7 +17,7 @@ class MyTeamController {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Unable to get documents directory.")
         }
-        return documentsDirectory.appendingPathComponent("favPokemon.plist")
+        return documentsDirectory.appendingPathComponent("teamPokemon.plist")
     }()
     
     private init() {

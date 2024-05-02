@@ -17,26 +17,50 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bKt-qv-iJ1">
-                        <rect key="frame" x="10" y="11" width="80" height="80"/>
+                        <rect key="frame" x="10" y="10" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="Jod-1S-Q76"/>
                             <constraint firstAttribute="width" constant="80" id="zVJ-PK-Fn6"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-Jg-5VG">
-                        <rect key="frame" x="103" y="11" width="45" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-Jg-5VG">
+                        <rect key="frame" x="103" y="11" width="120" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuB-g6-iss">
+                        <rect key="frame" x="103" y="36" width="113" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkX-B0-X8L">
+                        <rect key="frame" x="288" y="10" width="22" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="bKt-qv-iJ1" secondAttribute="bottom" constant="10" id="Cde-Am-bdq"/>
+                    <constraint firstItem="bKt-qv-iJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="DUm-4W-6iR"/>
+                    <constraint firstItem="FkX-B0-X8L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MKx-BX-VbQ"/>
+                    <constraint firstAttribute="trailing" secondItem="FkX-B0-X8L" secondAttribute="trailing" constant="10" id="OXy-I5-AbF"/>
                     <constraint firstItem="bKt-qv-iJ1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="P4M-Kv-HVH"/>
                     <constraint firstItem="bKt-qv-iJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rem-4Q-bfj"/>
+                    <constraint firstItem="bKt-qv-iJ1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ui3-1s-D7q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="pokemonImageView" destination="bKt-qv-iJ1" id="Khv-vn-bfc"/>
+                <outlet property="pokemonNOLabel" destination="FkX-B0-X8L" id="oUM-VF-4MA"/>
+                <outlet property="pokemonNameLabel" destination="9eo-Jg-5VG" id="1G9-27-zQK"/>
+                <outlet property="pokemonTypeLabel" destination="fuB-g6-iss" id="DAP-d1-UD4"/>
+            </connections>
             <point key="canvasLocation" x="44.274809160305338" y="40.845070422535215"/>
         </tableViewCell>
     </objects>

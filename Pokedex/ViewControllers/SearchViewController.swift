@@ -9,17 +9,25 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
     func didTapTeamButton(for pokemon: Pokemon) {
-        print("test")
+        if !team.isPokemonOnTeam(pokemon) {
+            team.addTeamPokemon(pokemon)
+        } else {
+            team.removeTeamPokemon(pokemon)
+        }
+        
     }
-    
     
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    
+    typealias myTeamDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
+    var myTeamdataSource: myTeamDiffableDataSource!
     
     typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
     var dataSource: PokemonDiffableDataSource!
     var pokemon: [Pokemon] = []
     var fav = FavoriteController.shared
+    let team = MyTeamController.shared
     var filteredPokemon: [Pokemon] = []
     var isSearching = false
 

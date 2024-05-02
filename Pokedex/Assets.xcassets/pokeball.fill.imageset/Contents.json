@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "pokeball@2x.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "pokeball@2x.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },

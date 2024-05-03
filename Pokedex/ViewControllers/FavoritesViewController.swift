@@ -116,7 +116,8 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         let selectedPokemon = isSearching ? filteredFavorites[indexPath.row] : fav.favPokemon[indexPath.row]
         Task {
             do {
-                let evo = try await PokemonController.getEvolutionChain(selectedPokemon.id)
+                let species = try await PokemonController.getPokemonSpecies(selectedPokemon.id)
+                let evo = try await PokemonController.getEvolutionChain(species?.evoChain.url)
                 performSegue(withIdentifier: "toDetail", sender: (selectedPokemon, evo))
             } catch {
                 print("Error Fetching Evolution Chain: \(error.localizedDescription)")

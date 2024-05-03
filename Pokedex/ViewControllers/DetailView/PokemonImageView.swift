@@ -15,7 +15,7 @@ struct PokemonImageView: View {
         ScrollView(.horizontal) {
             HStack(spacing: 10) {
                 ForEach(evoPokemon, id: \.id) { pokemon in
-                    EvolutionView(pokeomon: pokemon)
+                    EvolutionView(pokemon: pokemon)
                 }
             }
         }
@@ -25,25 +25,28 @@ struct PokemonImageView: View {
         .padding()
         .shadow(radius: 10)
         .onAppear {
-            fetchPokeomonData()
+            traverseChain(evo?.chain)
         }
     }
     
-    func fetchPokeomonData() {
-        guard let chain = evo?.chain else { return }
-        traverseChain(chain)
-    }
-    
     func traverseChain(_ chain: EvolutionChain?) {
-            guard let chain = chain else { return }
-            
+        guard let chain = chain else { return }
+        
         let speciesName = chain.species.name
+        
             Task {
                 do {
                     if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: speciesName) {
-                        DispatchQueue.main.async {
-                            evoPokemon.append(pokemon)
-                        }
+                        let species = try await PokemonController.getPokemonSpecies(pokemon.id)
+                            if species?.evolvesFrom == nil {
+                                evoPokemon.insert(pokemon, at: 0)
+                            } else if chain.evolvesTo.isEmpty {
+                                evoPokemon.append(pokemon)
+                            } else if !evoPokemon.isEmpty {
+                                evoPokemon.insert(pokemon, at: 1)
+                            } else {
+                                evoPokemon.append(pokemon)
+                            }
                     }
                 } catch {
                     print("Error fetching pokemon info: \(error.localizedDescription)")
@@ -57,23 +60,32 @@ struct PokemonImageView: View {
 }
 
 struct EvolutionView: View {
-    let pokeomon: Pokemon
+    let pokemon: Pokemon
     
     var body: some View {
         VStack(alignment: .center) {
-            AsyncImage(url: URL(string: "\(pokeomon.sprites.front_default)")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 325, height: 80)
-            } placeholder: {
-                ProgressView()
+            ZStack {
+                Circle()
+                    .stroke(Color.black , lineWidth: 2) // Customize the color and lineWidth as per your preference
+                    .frame(width: 330, height: 105)// Adjust the size of the circle as needed
+                    .padding(.top, 5)
+                AsyncImage(url: URL(string: "\(pokemon.sprites.front_default)")) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 325, height: 100)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
             }
-            Text(pokeomon.name.capitalized)
+            .padding(.bottom, 10)
+            Text(pokemon.name.capitalized)
                 .font(.title)
         }
     }
 }
+
 
 #Preview {
     PokemonImageView()

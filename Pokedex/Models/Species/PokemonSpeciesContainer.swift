@@ -20,12 +20,17 @@ struct PokemonSpeciesContainer: Codable {
     let isLegendary: Bool?
     let isMythical: Bool?
     
+    let evoChain: Chain
     let evolvesFrom: PokemonSpecies?
     let habitat: PokemonHabitat?
     
     enum CodingKeys: String, CodingKey {
-        case isLegendary = "is_legendary", isMythical = "is_mythical", evolvesFrom = "evolves_from_species", baseHappiness = "base_happiness", captureRate = "capture_rate", name, habitat, color, shape
+        case isLegendary = "is_legendary", isMythical = "is_mythical", evoChain = "evolution_chain", evolvesFrom = "evolves_from_species", baseHappiness = "base_happiness", captureRate = "capture_rate", name, habitat, color, shape
     }
+}
+
+struct Chain: Codable {
+    let url: URL
 }
 
 

@@ -9,19 +9,31 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
     func didTapTeamButton(for pokemon: Pokemon) {
-        print("test")
+        if !team.isPokemonOnTeam(pokemon) {
+            team.addTeamPokemon(pokemon)
+        } else {
+            team.removeTeamPokemon(pokemon)
+        }
+        
     }
-    
     
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    
+    typealias myTeamDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
+    var myTeamdataSource: myTeamDiffableDataSource!
     
     typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
     var dataSource: PokemonDiffableDataSource!
     var pokemon: [Pokemon] = []
     var fav = FavoriteController.shared
+    let team = MyTeamController.shared
     var filteredPokemon: [Pokemon] = []
     var isSearching = false
+    
+    var isFetchingPokemon = false
+    var hasMorePokemon = true
+    var pageNumber = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +60,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
     func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Int, Pokemon>(tableView: searchTableView) { tableView, indexPath, pokemon in
             let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
+            
+            let lastSectionIndex = tableView.numberOfSections - 1
+                  let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+                  if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+                    let spinner = UIActivityIndicatorView(style: .large)
+                    spinner.frame = CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 70)
+                    if self.isSearching {
+                      spinner.stopAnimating()
+                      tableView.tableFooterView = nil
+                    } else {
+                      spinner.startAnimating()
+                      tableView.tableFooterView = spinner
+                    }
+                  }
+                  if indexPath.row == self.pokemon.count - 1 {
+                    self.pageNumber += 1
+                      self.displayGenericPokemon(self.pageNumber)
+                  }
+            
             cell.update(with: pokemon)
             cell.delegate = self
             return cell
@@ -61,24 +92,35 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         dataSource.apply(snapshot, animatingDifferences: true)
     }
         
-    
-    func displayGenericPokemon() {
+    private func displayGenericPokemon(_ page: Int  = 0) {
+        guard !isFetchingPokemon, hasMorePokemon else { return }
+        isFetchingPokemon = true
         Task {
-            do {
-                
 
-                let species = try await PokemonController.getPokemonSpecies(1)
-//                print(species)
-                
-                let pokemon = try await PokemonController.getGenericPokemon()
-                self.pokemon = pokemon
-                applySnapshot()
-            } catch {
-                print("error fetching Generic Pokemon: \(error.localizedDescription)")
+          do {
+            let newPokemon = try await PokemonController.getGenericPokemon(page: page)
+            print("page: \(pageNumber) with \(self.pokemon.count) many pokemon")
+            if newPokemon.count < 20 {
+              hasMorePokemon = false
+
             }
+            DispatchQueue.main.async {
+              if newPokemon.isEmpty {
+                self.hasMorePokemon = false
+              } else {
+                self.pokemon.append(contentsOf: newPokemon)
+                self.applySnapshot()
+              }
+              self.isFetchingPokemon = false
+            }
+          } catch {
+            DispatchQueue.main.async {
+              self.isFetchingPokemon = false
+            }
+          }
         }
-    }
-    
+      }
+  
     func didTapLikeButton(for pokemon: Pokemon) {
         if !fav.isPokemonFavorite(pokemon) {
             fav.addFavoritePokemon(pokemon)

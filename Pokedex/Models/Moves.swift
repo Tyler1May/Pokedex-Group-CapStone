@@ -13,6 +13,5 @@ struct PokemonMoveContainer: Codable {
 
 struct Move: Codable {
     let name: String?
-    let url: String?
-    
+    let url: String? 
 }

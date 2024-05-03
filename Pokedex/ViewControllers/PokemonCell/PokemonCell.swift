@@ -29,6 +29,7 @@ class PokemonCell: UITableViewCell {
     
     weak var delegate: UpdateCellDelegate?
     var fav = FavoriteController.shared
+    var team = MyTeamController.shared
     var pokemon: Pokemon?
     
     override func awakeFromNib() {
@@ -46,19 +47,27 @@ class PokemonCell: UITableViewCell {
         
         self.pokemon = pokemon
         updateLikeButton()
+        updateTeamButton()
         
     }
     
     
     @IBAction func addToTeamButtonTapped(_ sender: Any) {
+       
         if let pokemon = pokemon {
-            delegate?.didTapTeamButton(for: pokemon)
+            if !team.isPokemonOnTeam(pokemon) {
+                delegate?.didTapTeamButton(for: pokemon)
+            } else {
+                delegate?.didTapTeamButton(for: pokemon)
+            }
         } else {
-            print("Nope")
+            print("Pokemon is nil")
         }
+        
+        updateTeamButton()
     }
     
-    @IBAction func favortieButton(_ sender: Any) {
+    @IBAction func favoriteButton(_ sender: Any) {
         
         if let pokemon = pokemon {
             if !fav.isPokemonFavorite(pokemon) {
@@ -77,6 +86,12 @@ class PokemonCell: UITableViewCell {
         let star = fav.favPokemon.contains(where: { $0.id == pokemon?.id }) ? "star.fill" : "star"
         likeButton.setImage(UIImage(systemName: star), for: .normal)
         likeButton.tintColor = fav.favPokemon.contains(where: { $0.id == pokemon?.id}) ? .systemYellow : .black
+    }
+    
+    private func updateTeamButton() {
+        let ball = team.teamPokemon.contains(where: { $0.id == pokemon?.id }) ? "pokeball.fill" : "pokeball"
+        myTeamButton.setImage(UIImage(named: ball), for: .normal)
+        
     }
     
 }

@@ -221,40 +221,42 @@ struct PokemonController {
         }
     }
     
-        static func getEvolutionChain(_ pokemonID: Int) async throws -> PokemonEvolutionContainer? {
-        let session = URLSession.shared
-        let url = URLComponents(string:"\(API.url)/evolution-chain/\(pokemonID)")!
-        
-        let request = URLRequest(url: url.url!)
-        
-        var data: Data
-        var response: URLResponse
-        
-        do {
-            let (httpData, httpResponse) = try await session.data(for: request)
-            data = httpData
-            response = httpResponse
-        } catch {
-            throw error
+        static func getEvolutionChain(_ evoURL: URL?) async throws -> PokemonEvolutionContainer? {
+            let session = URLSession.shared
+            guard let url = evoURL else {
+                throw API.APIError.InvalidURL
+            }
+            
+            let request = URLRequest(url: url)
+            
+            var data: Data
+            var response: URLResponse
+            
+            do {
+                let (httpData, httpResponse) = try await session.data(for: request)
+                data = httpData
+                response = httpResponse
+            } catch {
+                throw error
+            }
+            
+            // Ensure we had a good response (status 200)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                // TODO: Currently an error is thrown if there is no pokemon by the given name.
+                // Would be better if nil is returned when there is no pokemon
+                // Then return an error for any other errors.
+                // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
+                throw API.APIError.SpecificPokemonRequestFailed
+            }
+            
+            // Decode the pokemon
+            let decoder = JSONDecoder()
+            print("!!! data: \( data))")
+            do {
+                let evolutionChain = try decoder.decode(PokemonEvolutionContainer.self, from: data)
+                return evolutionChain
+            } catch {
+                return nil
+            }
         }
-        
-        // Ensure we had a good response (status 200)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            // TODO: Currently an error is thrown if there is no pokemon by the given name.
-            // Would be better if nil is returned when there is no pokemon
-            // Then return an error for any other errors.
-            // Hint: You will need to figure out what the httpResponse.statusCode is when an unkown name is searched
-            throw API.APIError.SpecificPokemonRequestFailed
-        }
-        
-        // Decode the pokemon
-        let decoder = JSONDecoder()
-        print("!!! data: \( data))")
-        do {
-            let evolutionChain = try decoder.decode(PokemonEvolutionContainer.self, from: data)
-            return evolutionChain
-        } catch {
-            return nil
-        }
-    }
 }

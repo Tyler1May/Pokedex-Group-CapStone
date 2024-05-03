@@ -41,8 +41,7 @@ class PokemonDetailViewController: UIViewController {
         
         // Create PokemonImageView
         let evo = self.evo
-        let species = self.species
-        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo, species: species))
+        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo))
         addChild(pokemonImageView)
         view.addSubview(pokemonImageView.view)
         pokemonImageView.didMove(toParent: self)
@@ -50,7 +49,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up constraints for PokemonImageView
         pokemonImageView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 60),
+            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 80),
             pokemonImageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pokemonImageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -58,7 +57,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up nameLabel constraints
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 60),
+            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 80),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         

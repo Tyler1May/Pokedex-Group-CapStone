@@ -9,14 +9,13 @@ import SwiftUI
 
 struct PokemonImageView: View {
     var evo: PokemonEvolutionContainer?
-    var species: PokemonSpeciesContainer?
     @State var evoPokemon: [Pokemon] = []
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 10) {
                 ForEach(evoPokemon, id: \.id) { pokemon in
-                    EvolutionView(pokeomon: pokemon)
+                    EvolutionView(pokemon: pokemon)
                 }
             }
         }
@@ -26,72 +25,28 @@ struct PokemonImageView: View {
         .padding()
         .shadow(radius: 10)
         .onAppear {
-            fetchPokeomonData()
+            traverseChain(evo?.chain)
         }
-    }
-    
-    func fetchPokeomonData() {
-        guard let chain = evo?.chain else { return }
-        
-        var FirstEvoName = ""
-            
-        if species?.evolvesFrom == nil {
-            // If evolvesFrom is nil, it's the first in the chain
-            if let speciesName = species?.name {
-                Task {
-                    do {
-                        if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: speciesName) {
-                            DispatchQueue.main.async {
-                                evoPokemon.insert(pokemon, at: 0)
-                                FirstEvoName = pokemon.name
-                                traverseChain(chain)
-                            }
-                        }
-                    } catch {
-                        print("Error fetching pokemon info: \(error.localizedDescription)")
-                    }
-                }
-            }
-        } else {
-            // If evolvesFrom is not nil, fetch its data first
-            if let evolvesFromName = species?.evolvesFrom?.name {
-                Task {
-                    do {
-                        if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: evolvesFromName) {
-                            DispatchQueue.main.async {
-                                if evolvesFromName == FirstEvoName {
-                                    evoPokemon.insert(pokemon, at: 1)
-                                } else {
-                                    evoPokemon.append(pokemon)
-                                }
-                                traverseChain(chain)
-                            }
-                        }
-                    } catch {
-                        print("Error fetching pokemon info: \(error.localizedDescription)")
-                    }
-                }
-            }
-        }
-        
-        // Continue traversing the evolution chain
-//        traverseChain(chain)
     }
     
     func traverseChain(_ chain: EvolutionChain?) {
         guard let chain = chain else { return }
         
         let speciesName = chain.species.name
-        let isAlreadyAdded = evoPokemon.contains { $0.name == speciesName }
         
             Task {
                 do {
                     if let pokemon = try await PokemonController.getSpecificPokemon(pokemonName: speciesName) {
-                        DispatchQueue.main.async {
-                            if !isAlreadyAdded {
+                        let species = try await PokemonController.getPokemonSpecies(pokemon.id)
+                            if species?.evolvesFrom == nil {
+                                evoPokemon.insert(pokemon, at: 0)
+                            } else if chain.evolvesTo.isEmpty {
+                                evoPokemon.append(pokemon)
+                            } else if !evoPokemon.isEmpty {
+                                evoPokemon.insert(pokemon, at: 1)
+                            } else {
                                 evoPokemon.append(pokemon)
                             }
-                        }
                     }
                 } catch {
                     print("Error fetching pokemon info: \(error.localizedDescription)")
@@ -105,23 +60,32 @@ struct PokemonImageView: View {
 }
 
 struct EvolutionView: View {
-    let pokeomon: Pokemon
+    let pokemon: Pokemon
     
     var body: some View {
         VStack(alignment: .center) {
-            AsyncImage(url: URL(string: "\(pokeomon.sprites.front_default)")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 325, height: 80)
-            } placeholder: {
-                ProgressView()
+            ZStack {
+                Circle()
+                    .stroke(Color.black , lineWidth: 2) // Customize the color and lineWidth as per your preference
+                    .frame(width: 330, height: 105)// Adjust the size of the circle as needed
+                    .padding(.top, 5)
+                AsyncImage(url: URL(string: "\(pokemon.sprites.front_default)")) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 325, height: 100)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
             }
-            Text(pokeomon.name.capitalized)
+            .padding(.bottom, 10)
+            Text(pokemon.name.capitalized)
                 .font(.title)
         }
     }
 }
+
 
 #Preview {
     PokemonImageView()

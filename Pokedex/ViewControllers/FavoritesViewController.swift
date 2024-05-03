@@ -12,9 +12,11 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     @IBOutlet var favoriteTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
+    
     typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
     var dataSource: PokemonDiffableDataSource!
     let fav = FavoriteController.shared
+    let team = MyTeamController.shared
     var filteredFavorites: [Pokemon] = []
     var isSearching = false
     
@@ -51,7 +53,12 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     }
     
     func didTapTeamButton(for pokemon: Pokemon) {
-        print("test")
+        if !team.isPokemonOnTeam(pokemon) {
+            team.addTeamPokemon(pokemon)
+        } else {
+            team.removeTeamPokemon(pokemon)
+        }
+        
     }
     
     func didTapLikeButton(for pokemon: Pokemon) {

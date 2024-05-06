@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct PokemonTypesView: View {
-    var types: [PokemonTypeContainer]
-
+    var typesContainer: [PokemonTypeContainer]
+    @State var damageContainer: DamageRelationsContainer?
+    @State var damageRelationsDict = [String: DamageRelations]()
+    @State var weaknesses = [String]()
+    
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
@@ -18,7 +21,7 @@ struct PokemonTypesView: View {
                     Text("Types:")
                         .font(.title)
                     gridForTypes()
-                        .frame(width: 325)
+                        .frame(width: 285)
                 }
                 .padding()
                 .background(Color(.systemGray5))
@@ -30,8 +33,8 @@ struct PokemonTypesView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Weaknesses:")
                         .font(.title)
-                    gridForTypes()
-                        .frame(width: 325)
+                    gridForWeaknesses()
+                        .frame(width: 285)
                 }
                 .padding()
                 .background(Color(.systemGray5))
@@ -44,7 +47,7 @@ struct PokemonTypesView: View {
                     Text("Strengths:")
                         .font(.title)
                     gridForTypes()
-                        .frame(width: 325)
+                        .frame(width: 285)
                 }
                 .padding()
                 .background(Color(.systemGray5))
@@ -53,6 +56,9 @@ struct PokemonTypesView: View {
                 .shadow(radius: 10)
             }
         }
+        .onAppear {
+            fetchDamageRelations()
+        }
     }
     
     @ViewBuilder
@@ -60,13 +66,59 @@ struct PokemonTypesView: View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
         
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(types, id: \.type.name) { typeContainer in
+            ForEach(typesContainer, id: \.type.name) { typeContainer in
                 Text(typeContainer.type.name.capitalized)
+                    .font(.subheadline)
                     .padding()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
                     .background(Color(typeColor(for: typeContainer.type.name)))
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+        }
+        
+    }
+    
+    @ViewBuilder
+    private func gridForWeaknesses() -> some View {
+        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+        
+        if let doubleDamageFrom = damageContainer?.damageRelations.doubleDamageFrom {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(doubleDamageFrom.compactMap { $0 }, id: \.name) { damageType in
+                    Text(damageType.name.capitalized)
+                        .font(.subheadline)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+                        .background(Color(typeColor(for: damageType.name)))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+            }
+            
+        } else {
+            Text("No weaknesses found")
+                .foregroundStyle(.gray)
+        }
+    }
+    
+    func fetchDamageRelations() {
+        Task {
+            do {
+                for type in typesContainer {
+                    if let damageRelations = try await PokemonController.getPokemonDamageRelatons(type.type.name) {
+                        damageRelationsDict[type.type.name] = damageRelations.damageRelations
+                    }
+                }
+                
+                var doubleDamageFromTypes: [String] = []
+                var halfDamageFromTypes: [String] = []
+                
+                
+                weaknesses = doubleDamageTypes.filter { !halfDamageFromTypes.contains($0) }
+                
+            } catch {
+                print("Error fetching damage relations: \(error.localizedDescription) ")
             }
         }
     }
@@ -117,7 +169,7 @@ struct PokemonTypesView: View {
 }
 
 #Preview {
-    PokemonTypesView(types: [
+    PokemonTypesView(typesContainer: [
         PokemonTypeContainer(slot: 1, type: .init(name: "electric")),
         PokemonTypeContainer(slot: 1, type: .init(name: "fire")),
         PokemonTypeContainer(slot: 1, type: .init(name: "water")),

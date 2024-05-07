@@ -12,6 +12,7 @@ struct PokemonTypesView: View {
     @State var damageContainer: DamageRelationsContainer?
     @State var damageRelationsDict = [String: DamageRelations]()
     @State var weaknesses = [String]()
+    @State var strengths = [String]()
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -33,7 +34,7 @@ struct PokemonTypesView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Weaknesses:")
                         .font(.title)
-                    gridForWeaknesses()
+                    gridForStrengths()
                         .frame(width: 285)
                 }
                 .padding()
@@ -46,7 +47,7 @@ struct PokemonTypesView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Strengths:")
                         .font(.title)
-                    gridForTypes()
+                    gridForWeaknesses()
                         .frame(width: 285)
                 }
                 .padding()
@@ -65,7 +66,7 @@ struct PokemonTypesView: View {
     private func gridForTypes() -> some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
         
-        LazyVGrid(columns: columns, spacing: 10) {
+        LazyVGrid(columns: columns, spacing: 5) {
             ForEach(typesContainer, id: \.type.name) { typeContainer in
                 Text(typeContainer.type.name.capitalized)
                     .font(.subheadline)
@@ -83,14 +84,14 @@ struct PokemonTypesView: View {
     private func gridForWeaknesses() -> some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
         
-        if let doubleDamageFrom = damageContainer?.damageRelations.doubleDamageFrom {
-            LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(doubleDamageFrom.compactMap { $0 }, id: \.name) { damageType in
-                    Text(damageType.name.capitalized)
+        if !weaknesses.isEmpty {
+            LazyVGrid(columns: columns, spacing: 5) {
+                ForEach(weaknesses, id: \.self) { weakness in
+                    Text(weakness.capitalized)
                         .font(.subheadline)
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                        .background(Color(typeColor(for: damageType.name)))
+                        .background(Color(typeColor(for: weakness)))
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
@@ -98,6 +99,29 @@ struct PokemonTypesView: View {
             
         } else {
             Text("No weaknesses found")
+                .foregroundStyle(.gray)
+        }
+    }
+    
+    @ViewBuilder
+    private func gridForStrengths() -> some View {
+        let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+        
+        if !strengths.isEmpty {
+            LazyVGrid(columns: columns, spacing: 5) {
+                ForEach(strengths, id: \.self) { strength in
+                    Text(strength.capitalized)
+                        .font(.subheadline)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
+                        .background(Color(typeColor(for: strength)))
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+            }
+            
+        } else {
+            Text("No strengths found")
                 .foregroundStyle(.gray)
         }
     }
@@ -113,9 +137,43 @@ struct PokemonTypesView: View {
                 
                 var doubleDamageFromTypes: [String] = []
                 var halfDamageFromTypes: [String] = []
+                var doubleDamageToTypes: [String] = []
+                var halfDamageToTypes: [String] = []
                 
+                for (_, damageRelations) in damageRelationsDict {
+                    for damageType in damageRelations.doubleDamageFrom {
+                        if let name = damageType?.name {
+                            doubleDamageFromTypes.append(name)
+                        }
+                    }
+                }
                 
-                weaknesses = doubleDamageTypes.filter { !halfDamageFromTypes.contains($0) }
+                for (_, damageRelations) in damageRelationsDict {
+                    for damageType in damageRelations.halfDamageFrom {
+                        if let name = damageType?.name {
+                            halfDamageFromTypes.append(name)
+                        }
+                    }
+                }
+                
+                for (_, damageRelations) in damageRelationsDict {
+                    for damageType in damageRelations.doubleDamageTo {
+                        if let name = damageType?.name {
+                            doubleDamageToTypes.append(name)
+                        }
+                    }
+                }
+                
+                for (_, damageRelations) in damageRelationsDict {
+                    for damageType in damageRelations.halfDamageTo {
+                        if let name = damageType?.name {
+                            halfDamageToTypes.append(name)
+                        }
+                    }
+                }
+                
+                weaknesses = doubleDamageFromTypes.filter { !halfDamageFromTypes.contains($0) }
+                strengths = doubleDamageToTypes.filter { !halfDamageToTypes.contains($0) }
                 
             } catch {
                 print("Error fetching damage relations: \(error.localizedDescription) ")

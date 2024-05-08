@@ -138,7 +138,6 @@
 		A38B12E12B4EE879003D33D8 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
-				E1FD8A8B2BEBCEAE007D96DE /* CustomFont */,
 				A38B130E2B4EFD52003D33D8 /* ViewControllers */,
 				F7370D7D2BEA7D2C00099A38 /* MovesViewController.swift */,
 				F7370D832BEBBEA200099A38 /* PokemonMovesCell */,
@@ -262,6 +261,7 @@
 		F78027C12BD2F5C40090B631 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				E1FD8A8B2BEBCEAE007D96DE /* CustomFont */,
 				F78027BF2BD2F5BB0090B631 /* RoundedShape.swift */,
 			);
 			path = Extentions;

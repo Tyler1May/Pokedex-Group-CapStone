@@ -16,12 +16,16 @@ class MovesViewController: UIViewController {
     @IBOutlet var typeLabel: UILabel!
     
     
-    var moves: [PokemonMoveContainer] = []
+    var moves: [PokemonMovesContainer] = []
+    var moveDetail: PokemonMoveDetail?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableViewCell()
+        getMoveDetail(move: moves[0].move.url ?? "")
+    
+        movesTableView.reloadData()
 
     }
     
@@ -29,6 +33,23 @@ class MovesViewController: UIViewController {
         movesTableView.register(UINib(nibName: "PokemonMovesCell", bundle: nil), forCellReuseIdentifier: "MovesCell")
         movesTableView.delegate = self
         movesTableView.dataSource = self
+    }
+    
+    func getMoveDetail(move: String) {
+        Task {
+            do {
+                moveDetail = try await PokemonController.getMoveDetail(move)
+                DispatchQueue.main.async {
+                    self.moveNameLabel.text = self.moves[0].move.name?.capitalized
+                    self.accuracyLabel.text = "Accuracy: \(self.moveDetail?.accuracy ?? 0)"
+                    self.damageClassLabel.text = "Damage Class: \(self.moveDetail?.damageClass.name.capitalized ?? "")"
+                    self.typeLabel.text = "Move Type: \(self.moveDetail?.type.name.capitalized ?? "")"
+                }
+            } catch {
+                print("Error getting move detail: \(error.localizedDescription)")
+            }
+        }
+        
     }
     
 
@@ -53,11 +74,7 @@ extension MovesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMove = moves[indexPath.row]
         
-        moveNameLabel.text = selectedMove.move.name?.capitalized ?? "N/A"
-//        accuracyLabel.text = "Accuracy: \()
-//        damageClassLabel.text = "Damage Class: \()"
-//        typeLabel.text = "Type: \()"
-        
+        getMoveDetail(move: selectedMove.move.url ?? "")
     }
 
 

@@ -15,12 +15,12 @@ struct API {
         case APIRequestFailed
         case GenericAPIRequestFailed
         case SpecificPokemonRequestFailed
-
         case InvalidURL
         case DamageRelationsRequestFailed
         case PokemonSpeciesRequestFailed
         case PokemonColorRequestFailed
         case EvolutionChainRequestFailed
+        case MoveDetailRequestFailed
 
     }
 }

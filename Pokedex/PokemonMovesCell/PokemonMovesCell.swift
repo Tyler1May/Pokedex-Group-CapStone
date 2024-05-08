@@ -15,7 +15,7 @@ class PokemonMovesCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func update(with moves: PokemonMoveContainer) {
+    func update(with moves: PokemonMovesContainer) {
         moveNameLabel.text = moves.move.name?.capitalized
     
     }

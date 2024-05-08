@@ -11,33 +11,33 @@
         <!--My Team View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="MyTeamViewController" id="Y6W-OH-hqX" customClass="MyTeamViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTeamViewController" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="MyTeamViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjB-Vb-S6x">
-                                <rect key="frame" x="20" y="79" width="353" height="17"/>
-                                <fontDescription key="fontDescription" name="STIXTwoText_Bold" family="STIX Two Text" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8c2-lg-i5l">
                                 <rect key="frame" x="20" y="116" width="353" height="682"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MYTEAM" translatesAutoresizingMaskIntoConstraints="NO" id="gjp-0q-mOk">
+                                <rect key="frame" x="62" y="49" width="269" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="xvE-o3-WnE"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rjB-Vb-S6x" secondAttribute="trailing" constant="20" id="0mY-mT-3TI"/>
-                            <constraint firstItem="8c2-lg-i5l" firstAttribute="top" secondItem="rjB-Vb-S6x" secondAttribute="bottom" constant="20" id="1aT-VS-CI0"/>
-                            <constraint firstItem="rjB-Vb-S6x" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="403-aT-QJC"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8c2-lg-i5l" secondAttribute="bottom" constant="20" id="Dlf-Wh-dAe"/>
-                            <constraint firstItem="rjB-Vb-S6x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="OxH-06-bPg"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="8c2-lg-i5l" secondAttribute="bottom" constant="20" id="CS7-Cx-H93"/>
+                            <constraint firstItem="gjp-0q-mOk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="62" id="Tnw-9v-oHo"/>
+                            <constraint firstItem="gjp-0q-mOk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-10" id="VPG-Zb-Oqo"/>
+                            <constraint firstItem="gjp-0q-mOk" firstAttribute="centerX" secondItem="8c2-lg-i5l" secondAttribute="centerX" id="hvR-UA-drj"/>
                             <constraint firstItem="8c2-lg-i5l" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="utx-hC-aLY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8c2-lg-i5l" secondAttribute="trailing" constant="20" id="x3D-9c-yl9"/>
+                            <constraint firstItem="8c2-lg-i5l" firstAttribute="top" secondItem="gjp-0q-mOk" secondAttribute="bottom" constant="8" id="zDC-eV-sJH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -46,10 +46,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-49"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-49.295774647887328"/>
         </scene>
     </scenes>
     <resources>
+        <image name="MYTEAM" width="786" height="186"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -59,9 +59,11 @@ class MyTeamTableViewCell: UITableViewCell {
     func update(with pokemon: Pokemon) {
         
         pokemonNameLabel.text = pokemon.name.capitalized
+        pokemonNameLabel.font = UIFont(name: "PokemonGb", size: 15)
         pokemonNOLabel.text = "No. \(pokemon.id)"
-        
+        pokemonNOLabel.font = UIFont(name: "PokemonGb", size: 10)
         pokemonTypeLabel.text = pokemon.types.reduce("") { "\($0 ?? "") \($1.type.name.capitalized)"}
+        pokemonTypeLabel.font = UIFont(name: "PokemonGb", size: 10)
         pokemonImageView.load(url: pokemon.sprites.front_default)
         
         self.pokemon = pokemon

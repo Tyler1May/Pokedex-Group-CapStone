@@ -21,10 +21,12 @@
 		A38B13072B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B13062B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift */; };
 		A38B13092B4EF1CB003D33D8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B13082B4EF1CB003D33D8 /* API.swift */; };
 		A38B130D2B4EFBD5003D33D8 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */; };
-		E1B320D62BDB579E00539D4E /* MyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B320D52BDB579E00539D4E /* MyTeam.swift */; };
 		E1FD8A812BE07A92007D96DE /* MyTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD8A7F2BE07A92007D96DE /* MyTeamTableViewCell.swift */; };
 		E1FD8A822BE07A92007D96DE /* MyTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FD8A802BE07A92007D96DE /* MyTeamTableViewCell.xib */; };
 		E1FD8A842BE13A7D007D96DE /* MyTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD8A832BE13A7D007D96DE /* MyTeamController.swift */; };
+		E1FD8A862BEBC000007D96DE /* MyTeamDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FD8A852BEBC000007D96DE /* MyTeamDetailView.storyboard */; };
+		E1FD8A882BEBC05D007D96DE /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FD8A872BEBC05D007D96DE /* TeamDetailViewController.swift */; };
+		E1FD8A8D2BEBCED2007D96DE /* PokemonGb-RAeo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1FD8A8C2BEBCED2007D96DE /* PokemonGb-RAeo.ttf */; };
 		EA101FF52BD6BF070089F0BE /* EvolutionChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA101FF42BD6BF070089F0BE /* EvolutionChain.swift */; };
 		EA3BA81C2BD2BB1800E35E6A /* DamageRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3BA81B2BD2BB1800E35E6A /* DamageRelations.swift */; };
 		EA79C4132BE291F500FF1CE6 /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA79C4122BE291F500FF1CE6 /* PokemonSpecies.swift */; };
@@ -71,10 +73,12 @@
 		A38B13062B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGenericSearchResults.swift; sourceTree = "<group>"; };
 		A38B13082B4EF1CB003D33D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
-		E1B320D52BDB579E00539D4E /* MyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeam.swift; sourceTree = "<group>"; };
 		E1FD8A7F2BE07A92007D96DE /* MyTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamTableViewCell.swift; sourceTree = "<group>"; };
 		E1FD8A802BE07A92007D96DE /* MyTeamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTeamTableViewCell.xib; sourceTree = "<group>"; };
 		E1FD8A832BE13A7D007D96DE /* MyTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamController.swift; sourceTree = "<group>"; };
+		E1FD8A852BEBC000007D96DE /* MyTeamDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTeamDetailView.storyboard; sourceTree = "<group>"; };
+		E1FD8A872BEBC05D007D96DE /* TeamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
+		E1FD8A8C2BEBCED2007D96DE /* PokemonGb-RAeo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PokemonGb-RAeo.ttf"; sourceTree = "<group>"; };
 		EA101FF42BD6BF070089F0BE /* EvolutionChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChain.swift; sourceTree = "<group>"; };
 		EA3BA81B2BD2BB1800E35E6A /* DamageRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageRelations.swift; sourceTree = "<group>"; };
 		EA79C4122BE291F500FF1CE6 /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		A38B12E12B4EE879003D33D8 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				E1FD8A8B2BEBCEAE007D96DE /* CustomFont */,
 				A38B130E2B4EFD52003D33D8 /* ViewControllers */,
 				F7370D7D2BEA7D2C00099A38 /* MovesViewController.swift */,
 				F7370D832BEBBEA200099A38 /* PokemonMovesCell */,
@@ -144,7 +149,6 @@
 				A38B12E42B4EE879003D33D8 /* SceneDelegate.swift */,
 				A38B12E82B4EE879003D33D8 /* Main.storyboard */,
 				F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */,
-				F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */,
 				F74E6BA22BD2B503001E3C27 /* PokemonDetailView.storyboard */,
 				F7370D7B2BEA7CF100099A38 /* MovesView.storyboard */,
 				F7597CDF2BD6C1CE00F2816A /* FavoritesView.storyboard */,
@@ -164,7 +168,6 @@
 				A38B12FD2B4EED7C003D33D8 /* PokemonType.swift */,
 				A38B12FF2B4EED94003D33D8 /* PokemonSprites.swift */,
 				A38B13042B4EEFB1003D33D8 /* PokemonGenericSearch.swift */,
-				E1B320D52BDB579E00539D4E /* MyTeam.swift */,
 				A38B13062B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift */,
 				A38B13082B4EF1CB003D33D8 /* API.swift */,
 				A38B130C2B4EFBD5003D33D8 /* UIImageViewExtension.swift */,
@@ -190,7 +193,7 @@
 			children = (
 				F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */,
 				F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */,
-				F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */,
+				E1FD8A8A2BEBC08C007D96DE /* Team */,
 				F7597CE12BD6C1F100F2816A /* FavoritesViewController.swift */,
 				E1FD8A7E2BE07A7B007D96DE /* MyTeamCell */,
 				EA934D752BCECD890070EFC7 /* PokemonCell */,
@@ -206,6 +209,25 @@
 				E1FD8A802BE07A92007D96DE /* MyTeamTableViewCell.xib */,
 			);
 			path = MyTeamCell;
+			sourceTree = "<group>";
+		};
+		E1FD8A8A2BEBC08C007D96DE /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				F7EDCAAD2BCED6D3000EAAD1 /* MyTeamViewController.swift */,
+				E1FD8A872BEBC05D007D96DE /* TeamDetailViewController.swift */,
+				F7EDCAAF2BCEDD15000EAAD1 /* MyTeamView.storyboard */,
+				E1FD8A852BEBC000007D96DE /* MyTeamDetailView.storyboard */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		E1FD8A8B2BEBCEAE007D96DE /* CustomFont */ = {
+			isa = PBXGroup;
+			children = (
+				E1FD8A8C2BEBCED2007D96DE /* PokemonGb-RAeo.ttf */,
+			);
+			path = CustomFont;
 			sourceTree = "<group>";
 		};
 		EA934D752BCECD890070EFC7 /* PokemonCell */ = {
@@ -320,8 +342,10 @@
 				EAD349592BCEB9AD00F74282 /* PokemonCell.xib in Resources */,
 				F7370D7C2BEA7CF100099A38 /* MovesView.storyboard in Resources */,
 				A38B12EC2B4EE87A003D33D8 /* Assets.xcassets in Resources */,
+				E1FD8A8D2BEBCED2007D96DE /* PokemonGb-RAeo.ttf in Resources */,
 				F7597CE02BD6C1CE00F2816A /* FavoritesView.storyboard in Resources */,
 				F7EDCAB02BCEDD15000EAAD1 /* MyTeamView.storyboard in Resources */,
+				E1FD8A862BEBC000007D96DE /* MyTeamDetailView.storyboard in Resources */,
 				A38B12EA2B4EE879003D33D8 /* Main.storyboard in Resources */,
 				F7370D802BEBBE4B00099A38 /* PokemonMovesCell.xib in Resources */,
 				E1FD8A822BE07A92007D96DE /* MyTeamTableViewCell.xib in Resources */,
@@ -337,7 +361,6 @@
 			files = (
 				EA3BA81C2BD2BB1800E35E6A /* DamageRelations.swift in Sources */,
 				A38B12F92B4EEB65003D33D8 /* Pokemon.swift in Sources */,
-				E1B320D62BDB579E00539D4E /* MyTeam.swift in Sources */,
 				A38B13072B4EEFF5003D33D8 /* PokemonGenericSearchResults.swift in Sources */,
 				EADF971E2BDBFCFF00E90AC5 /* Moves.swift in Sources */,
 				A38B13032B4EEE28003D33D8 /* PokemonController.swift in Sources */,
@@ -354,6 +377,7 @@
 				E1FD8A842BE13A7D007D96DE /* MyTeamController.swift in Sources */,
 				A38B130D2B4EFBD5003D33D8 /* UIImageViewExtension.swift in Sources */,
 				EADF97272BDC0A0F00E90AC5 /* PokemonAttribute.swift in Sources */,
+				E1FD8A882BEBC05D007D96DE /* TeamDetailViewController.swift in Sources */,
 				A38B12E52B4EE879003D33D8 /* SceneDelegate.swift in Sources */,
 				F7370D822BEBBE9700099A38 /* PokemonMovesCell.swift in Sources */,
 				EA79C4132BE291F500FF1CE6 /* PokemonSpecies.swift in Sources */,

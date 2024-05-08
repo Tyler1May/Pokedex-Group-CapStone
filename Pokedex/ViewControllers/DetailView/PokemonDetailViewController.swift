@@ -12,6 +12,8 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet var genderLabel: UILabel!
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var movesButton: UIButton!
+    @IBOutlet var pokemonImage: UIImageView!
     
     var pokemon: Pokemon?
     var evo: PokemonEvolutionContainer?
@@ -22,6 +24,9 @@ class PokemonDetailViewController: UIViewController {
 
         nameLabel.text = pokemon?.name.capitalized
         numberLabel.text = "No. \(pokemon?.id ?? 0)"
+        if let imageURL = pokemon?.sprites.front_default {
+            pokemonImage.load(url: imageURL)
+        }
         
         // Set up numberLabel constraints
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -37,39 +42,40 @@ class PokemonDetailViewController: UIViewController {
             genderLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
-//        let imageViewContentView = UIView()
-        
-        // Create PokemonImageView
-        let evo = self.evo
-        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo))
-        addChild(pokemonImageView)
-        view.addSubview(pokemonImageView.view)
-        pokemonImageView.didMove(toParent: self)
-        
-        // Set up constraints for PokemonImageView
-        pokemonImageView.view.translatesAutoresizingMaskIntoConstraints = false
+        // Set up pokemonImage constraints
+        pokemonImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonImageView.view.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 80),
-            pokemonImageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pokemonImageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            pokemonImage.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 10),
+            pokemonImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pokemonImage.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
         // Set up nameLabel constraints
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: pokemonImageView.view.bottomAnchor, constant: 80),
+            nameLabel.topAnchor.constraint(equalTo: pokemonImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // Set up movesButton constraints
+        movesButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            movesButton.widthAnchor.constraint(equalToConstant: 200),
+            movesButton.heightAnchor.constraint(equalToConstant: 50),
+            movesButton.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            movesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         // Create a scrollView
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            scrollView.topAnchor.constraint(equalTo: movesButton.bottomAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10)
         ])
         
         // Create a contentView
@@ -84,9 +90,9 @@ class PokemonDetailViewController: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor) // ensures the contentView doesn't scroll horizontally
         ])
         
-        // Add PokemonTypeView and PokemonStatusChartView to the contentView
+        // Add PokemonTypeView, PokemonStatusChartView, and PokemonImageView to the contentView
         let types = pokemon?.types ?? []
-        let pokemonTypeView = UIHostingController(rootView: PokemonTypesView(types: types))
+        let pokemonTypeView = UIHostingController(rootView: PokemonTypesView(typesContainer: types))
         addChild(pokemonTypeView)
         contentView.addSubview(pokemonTypeView.view)
         pokemonTypeView.didMove(toParent: self)
@@ -97,9 +103,17 @@ class PokemonDetailViewController: UIViewController {
         contentView.addSubview(pokemonStatChartView.view)
         pokemonStatChartView.didMove(toParent: self)
         
+        // Create PokemonImageView
+        let evo = self.evo
+        let pokemonImageView = UIHostingController(rootView: PokemonImageView(evo: evo))
+        addChild(pokemonImageView)
+        contentView.addSubview(pokemonImageView.view)
+        pokemonImageView.didMove(toParent: self)
+        
         // Set up constraints for PokemonTypeView and PokemonStatusChartView within contentView
         pokemonTypeView.view.translatesAutoresizingMaskIntoConstraints = false
         pokemonStatChartView.view.translatesAutoresizingMaskIntoConstraints = false
+        pokemonImageView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pokemonTypeView.view.topAnchor.constraint(equalTo: contentView.topAnchor),
             pokemonTypeView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
@@ -108,8 +122,25 @@ class PokemonDetailViewController: UIViewController {
             pokemonStatChartView.view.topAnchor.constraint(equalTo: pokemonTypeView.view.bottomAnchor, constant: 10),
             pokemonStatChartView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             pokemonStatChartView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            pokemonStatChartView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // last element, constrain to bottom of contentView
+            /*pokemonStatChartView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),*/ // last element, constrain to bottom of contentView
+            
+            pokemonImageView.view.topAnchor.constraint(equalTo: pokemonStatChartView.view.bottomAnchor, constant: 80),
+            pokemonImageView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            pokemonImageView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            pokemonImageView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+    }
+    
+    @IBSegueAction func toMovesSegue(_ coder: NSCoder) -> UIViewController? {
+        return MovesViewController(coder: coder)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMoves" {
+            if let destinationVC = segue.destination as? MovesViewController {
+                destinationVC.moves = pokemon?.moves ?? []
+            }
+        }
     }
     
 }

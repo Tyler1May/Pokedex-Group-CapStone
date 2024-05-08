@@ -8,14 +8,28 @@
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDelegate {
+    
     func didTapTeamButton(for pokemon: Pokemon) {
-        if !team.isPokemonOnTeam(pokemon) {
-            team.addTeamPokemon(pokemon)
+        if team.isPokemonOnTeam(pokemon) {
+            _ = team.removeTeamPokemon(pokemon)
         } else {
-            team.removeTeamPokemon(pokemon)
+            let success = team.addTeamPokemon(pokemon)
+            if success {
+                
+            } else {
+                showAlertWith(title: "Team Full", message: "You cannot add more than 6 Pokémon to your team.")
+            }
         }
-        
     }
+    
+    func showAlertWith(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+    
+   
+
     
     @IBOutlet var searchTableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -133,7 +147,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
     @IBSegueAction func toDetailSegue(_ coder: NSCoder) -> PokemonDetailViewController? {
         return PokemonDetailViewController(coder: coder)
     }
-    
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {

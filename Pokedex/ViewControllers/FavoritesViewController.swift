@@ -16,7 +16,9 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     typealias PokemonDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
     var dataSource: PokemonDiffableDataSource!
     let fav = FavoriteController.shared
+    typealias myTeamDiffableDataSource = UITableViewDiffableDataSource<Int, Pokemon>
     let team = MyTeamController.shared
+    var myTeamdataSource: myTeamDiffableDataSource!
     var filteredFavorites: [Pokemon] = []
     var isSearching = false
     
@@ -53,13 +55,25 @@ class FavoritesViewController: UIViewController, UISearchBarDelegate, UpdateCell
     }
     
     func didTapTeamButton(for pokemon: Pokemon) {
-        if !team.isPokemonOnTeam(pokemon) {
-            team.addTeamPokemon(pokemon)
+        if team.isPokemonOnTeam(pokemon) {
+            _ = team.removeTeamPokemon(pokemon)
         } else {
-            team.removeTeamPokemon(pokemon)
+            let success = team.addTeamPokemon(pokemon)
+            if success {
+                
+            } else {
+                showAlertWith(title: "Team Full", message: "You cannot add more than 6 Pokémon to your team.")
+            }
         }
-        
     }
+    
+    func showAlertWith(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+    
+    
     
     func didTapLikeButton(for pokemon: Pokemon) {
         if !fav.isPokemonFavorite(pokemon) {

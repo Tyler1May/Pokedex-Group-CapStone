@@ -81,15 +81,13 @@ class MyTeamViewController: UIViewController, UITableViewDataSource, UITableView
       }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (action, view, completionHandler) in
             guard let self = self else { return }
-            // Fetch the Pokemon
+            
             let pokemonToDelete = self.team.teamPokemon[indexPath.row]
             
-            // Remove from the team
             let success = self.team.removeTeamPokemon(pokemonToDelete)
             if success {
-                // Update the snapshot
                 var currentSnapshot = self.myTeamdataSource.snapshot()
                 currentSnapshot.deleteItems([pokemonToDelete])
                 self.myTeamdataSource.apply(currentSnapshot, animatingDifferences: true)

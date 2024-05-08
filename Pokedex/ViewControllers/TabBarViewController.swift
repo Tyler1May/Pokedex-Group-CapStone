@@ -25,7 +25,9 @@ class TabBarViewController: UITabBarController {
         self.viewControllers = [searchViewController, myTeamViewController, favoritesViewController]
         
         let tabBar = self.tabBar
-        tabBar.backgroundColor = .white
+        tabBar.backgroundColor = .systemRed
+        tabBar.tintColor = .lightGray
+        tabBar.unselectedItemTintColor = UIColor.darkGray
         
     }
     

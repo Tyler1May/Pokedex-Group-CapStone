@@ -24,12 +24,18 @@ class MyTeamController {
         loadTeamPokemon()
     }
     
-    func addTeamPokemon(_ pokemon: Pokemon) {
-        if !teamPokemon.contains(where: { $0.id == pokemon.id }) {
-            teamPokemon.append(pokemon)
-            saveTeamPokemon()
+    func addTeamPokemon(_ pokemon: Pokemon) -> Bool {
+            if teamPokemon.count >= 6 {
+                // Team is full
+                return false
+            }
+            if !teamPokemon.contains(where: { $0.id == pokemon.id }) {
+                teamPokemon.append(pokemon)
+                saveTeamPokemon()
+                return true
+            }
+            return false
         }
-    }
     
     func removeTeamPokemon(_ pokemon: Pokemon) -> Bool {
         if let index = teamPokemon.firstIndex(where: { $0.id == pokemon.id }) {
@@ -59,5 +65,7 @@ class MyTeamController {
             print("Error saving favorite Pokemon: \(error.localizedDescription)")
         }
     }
+    
+    
     
 }

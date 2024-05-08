@@ -69,6 +69,7 @@ class PokemonDetailViewController: UIViewController {
         // Create a scrollView
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: movesButton.bottomAnchor, constant: 10),
@@ -128,6 +129,18 @@ class PokemonDetailViewController: UIViewController {
             pokemonImageView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             pokemonImageView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+    }
+    
+    @IBSegueAction func toMovesSegue(_ coder: NSCoder) -> UIViewController? {
+        return MovesViewController(coder: coder)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMoves" {
+            if let destinationVC = segue.destination as? MovesViewController {
+                destinationVC.moves = pokemon?.moves ?? []
+            }
+        }
     }
     
 }

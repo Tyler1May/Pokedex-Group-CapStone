@@ -32,7 +32,7 @@ struct PokemonTypesView: View {
                 
                 // Weaknesses
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Weaknesses:")
+                    Text("Strengths:")
                         .font(.title)
                     gridForStrengths()
                         .frame(width: 285)
@@ -45,7 +45,7 @@ struct PokemonTypesView: View {
                 
                 // Strengths
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Strengths:")
+                    Text("Weaknesses:")
                         .font(.title)
                     gridForWeaknesses()
                         .frame(width: 285)

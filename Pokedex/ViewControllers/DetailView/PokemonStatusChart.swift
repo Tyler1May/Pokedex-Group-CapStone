@@ -13,7 +13,7 @@ struct PokemonStatusChart: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Stats")
+            Text("Base Stats")
                 .font(.title)
             ForEach(stats, id: \.stat.name) { stat in
                 HStack(spacing: 5) {

@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PokemonGb-RAeo.ttf</string>
+	</array>
 </dict>
 </plist>

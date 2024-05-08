@@ -70,7 +70,7 @@ class MyTeamViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
         
     }
-      
+    
       func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
           if editingStyle == .delete {
               let success = MyTeamController.shared.removeTeamPokemon(MyTeamController.shared.teamPokemon[indexPath.row])
@@ -98,6 +98,30 @@ class MyTeamViewController: UIViewController, UITableViewDataSource, UITableView
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "toTeamDetail", sender: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @IBSegueAction func toTeamDetailSegue(_ coder: NSCoder) -> TeamDetailViewController? {
+        return TeamDetailViewController(coder: coder)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTeamDetail" {
+            if let detailVC = segue.destination as? TeamDetailViewController,
+               let indexPath = sender as? IndexPath {
+                let pokemon = team.teamPokemon[indexPath.row]
+                detailVC.pokemon = pokemon
+                print("Segue to detail with pokemon: \(pokemon.name)")
+            } else {
+                print("Failed to initialize detail view controller or index path.")
+            }
+        }
+    }
+    
+    
     func configureDataSource() {
         myTeamdataSource = myTeamDiffableDataSource(tableView: teamTableView) { tableView, indexPath, pokemon in
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyTeam", for: indexPath) as! MyTeamTableViewCell
@@ -113,7 +137,5 @@ class MyTeamViewController: UIViewController, UITableViewDataSource, UITableView
         snapshot.appendItems(team.teamPokemon, toSection: 0)
         myTeamdataSource.apply(snapshot, animatingDifferences: true)
     }
-    
-    
 
   }

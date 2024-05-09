@@ -21,7 +21,7 @@ struct PokemonController {
             URLQueryItem(name: "limit", value: "20")
         ]
         
-        var request = URLRequest(url: url.url!)
+        let request = URLRequest(url: url.url!)
         
         var data: Data
         var response: URLResponse
@@ -234,7 +234,7 @@ struct PokemonController {
 
         }
     
-    static func getMoveDetail(_ moveURL: String) async throws -> PokemonMoveDetail? {
+    static func getMoveDetail(_ moveURL: String) async throws -> PokemonMoveInfo? {
         let session = URLSession.shared
         
         guard let url = URLComponents(string: moveURL) else {
@@ -261,7 +261,7 @@ struct PokemonController {
         let decoder = JSONDecoder()
         
         do {
-            let moveDetail = try decoder.decode(PokemonMoveDetail.self, from: data)
+            let moveDetail = try decoder.decode(PokemonMoveInfo.self, from: data)
             return moveDetail
         } catch {
             return nil

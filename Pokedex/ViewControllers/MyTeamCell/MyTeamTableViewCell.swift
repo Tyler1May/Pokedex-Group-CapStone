@@ -35,7 +35,7 @@ class MyTeamTableViewCell: UITableViewCell {
     
     func didTapTeamButton(for pokemon: Pokemon) {
         if !team.isPokemonOnTeam(pokemon) {
-            team.addTeamPokemon(pokemon)
+            _ = team.addTeamPokemon(pokemon)
         } else {
             _ = team.removeTeamPokemon(pokemon)
         }

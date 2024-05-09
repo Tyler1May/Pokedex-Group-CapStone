@@ -10,6 +10,7 @@ import UIKit
 class PokemonMovesCell: UITableViewCell {
 
     @IBOutlet var moveNameLabel: UILabel!
+    @IBOutlet var moveTypeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +18,7 @@ class PokemonMovesCell: UITableViewCell {
 
     func update(with moves: PokemonMovesContainer) {
         moveNameLabel.text = moves.move.name?.capitalized
-    
+//        moveNameLabel.setPokemonFont(size: 10)
     }
 
 }

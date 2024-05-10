@@ -83,7 +83,7 @@ class PokemonDetailViewController: UIViewController {
         // Create a scrollView
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 40, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: 25, left: 0, bottom: 40, right: 0)
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: movesButton.bottomAnchor, constant: 10),

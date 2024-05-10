@@ -141,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				A38B130E2B4EFD52003D33D8 /* ViewControllers */,
-				F7370D7D2BEA7D2C00099A38 /* MovesViewController.swift */,
 				F7370D832BEBBEA200099A38 /* PokemonMovesCell */,
 				A38B13012B4EEE09003D33D8 /* Controllers */,
 				A38B12FA2B4EED3C003D33D8 /* Models */,
@@ -192,6 +191,7 @@
 		A38B130E2B4EFD52003D33D8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F7370D7D2BEA7D2C00099A38 /* MovesViewController.swift */,
 				F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */,
 				F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */,
 				E1FD8A8A2BEBC08C007D96DE /* Team */,

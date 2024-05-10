@@ -3,17 +3,16 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MovesCell" rowHeight="125" id="STU-xb-Dzs" customClass="PokemonMovesCell" customModule="Pokedex" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="122"/>
+            <rect key="frame" x="0.0" y="0.0" width="532" height="122"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="STU-xb-Dzs" id="xNP-C3-q6P" customClass="PokemonMovesCell" customModule="Pokedex" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="349" height="122"/>
+                <rect key="frame" x="0.0" y="0.0" width="488" height="122"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUH-9r-vbP">
@@ -26,7 +25,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="r2E-Q1-9U9" firstAttribute="top" secondItem="aUH-9r-vbP" secondAttribute="top" constant="10" id="ASo-3a-qSp"/>
                             <constraint firstAttribute="trailing" secondItem="r2E-Q1-9U9" secondAttribute="trailing" constant="10" id="Aeh-K0-rQY"/>
@@ -34,6 +32,13 @@
                             <constraint firstItem="r2E-Q1-9U9" firstAttribute="leading" secondItem="aUH-9r-vbP" secondAttribute="leading" constant="10" id="txM-7S-tPe"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y21-ae-mo5">
+                        <rect key="frame" x="195" y="51" width="84" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="aUH-9r-vbP" firstAttribute="top" secondItem="xNP-C3-q6P" secondAttribute="top" constant="10" id="UNc-IM-20O"/>
@@ -43,13 +48,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="moveNameLabel" destination="r2E-Q1-9U9" id="jTe-ff-HLb"/>
+                <outlet property="moveTypeLabel" destination="Y21-ae-mo5" id="VrQ-iI-qvL"/>
             </connections>
-            <point key="canvasLocation" x="52.671755725190835" y="-28.169014084507044"/>
+            <point key="canvasLocation" x="158.77862595419847" y="-28.169014084507044"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

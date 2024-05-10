@@ -13,7 +13,8 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var movesButton: UIButton!
-    @IBOutlet var pokemonImage: UIImageView!
+    @IBOutlet var pokemonFrontImage: UIImageView!
+    @IBOutlet var pokemonBackImage: UIImageView!
     
     var pokemon: Pokemon?
     var evo: PokemonEvolutionContainer?
@@ -24,8 +25,11 @@ class PokemonDetailViewController: UIViewController {
 
         nameLabel.text = pokemon?.name.capitalized
         numberLabel.text = "No. \(pokemon?.id ?? 0)"
-        if let imageURL = pokemon?.sprites.front_default {
-            pokemonImage.load(url: imageURL)
+        if let frontImageURL = pokemon?.sprites.front_default {
+            pokemonFrontImage.load(url: frontImageURL)
+        }
+        if let backImageURl = pokemon?.sprites.back_default {
+            pokemonBackImage.load(url: backImageURl)
         }
         
         // Set up numberLabel constraints
@@ -42,18 +46,28 @@ class PokemonDetailViewController: UIViewController {
             genderLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
-        // Set up pokemonImage constraints
-        pokemonImage.translatesAutoresizingMaskIntoConstraints = false
+        // Set up pokemonFrontImage constraints
+        pokemonFrontImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonImage.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 10),
-            pokemonImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pokemonImage.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            pokemonFrontImage.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 10),
+            pokemonFrontImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            pokemonFrontImage.widthAnchor.constraint(equalToConstant: 180),
+            pokemonFrontImage.heightAnchor.constraint(equalToConstant: 180)
+        ])
+        
+        // Set up pokemonBackImage constriants
+        pokemonBackImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pokemonBackImage.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 10),
+            pokemonBackImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            pokemonBackImage.widthAnchor.constraint(equalToConstant: 180),
+            pokemonBackImage.heightAnchor.constraint(equalToConstant: 180)
         ])
         
         // Set up nameLabel constraints
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: pokemonImage.bottomAnchor, constant: 10),
+            nameLabel.topAnchor.constraint(equalTo: pokemonFrontImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
@@ -69,7 +83,7 @@ class PokemonDetailViewController: UIViewController {
         // Create a scrollView
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 40, right: 0)
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: movesButton.bottomAnchor, constant: 10),
@@ -119,7 +133,7 @@ class PokemonDetailViewController: UIViewController {
             pokemonTypeView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             pokemonTypeView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             
-            pokemonStatChartView.view.topAnchor.constraint(equalTo: pokemonTypeView.view.bottomAnchor, constant: 10),
+            pokemonStatChartView.view.topAnchor.constraint(equalTo: pokemonTypeView.view.bottomAnchor, constant: 25),
             pokemonStatChartView.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             pokemonStatChartView.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             /*pokemonStatChartView.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),*/ // last element, constrain to bottom of contentView

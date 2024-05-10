@@ -67,13 +67,13 @@ struct EvolutionView: View {
             ZStack {
                 Circle()
                     .stroke(Color.black , lineWidth: 2) // Customize the color and lineWidth as per your preference
-                    .frame(width: 330, height: 105)// Adjust the size of the circle as needed
+                    .frame(width: 210, height: 105)// Adjust the size of the circle as needed
                     .padding(.top, 5)
                 AsyncImage(url: URL(string: "\(pokemon.sprites.front_default)")) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 325, height: 100)
+                        .frame(width: 200, height: 100)
                         .clipShape(Circle())
                 } placeholder: {
                     ProgressView()

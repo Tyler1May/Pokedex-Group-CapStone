@@ -14,13 +14,13 @@ struct Pokemon: Codable, Identifiable, Equatable {
     var sprites: PokemonSprites
     var id: Int
     var stats: [PokemonStatsContainer]
-    var moves: [PokemonMoveContainer]
+    var moves: [PokemonMovesContainer]
     
     static func==(lhs: Pokemon, rhs: Pokemon) -> Bool {
         return lhs.id == rhs.id
     }
     
-    init(name: String, types: [PokemonTypeContainer], sprites: PokemonSprites, id: Int, stats: [PokemonStatsContainer], moves: [PokemonMoveContainer]) {
+    init(name: String, types: [PokemonTypeContainer], sprites: PokemonSprites, id: Int, stats: [PokemonStatsContainer], moves: [PokemonMovesContainer]) {
         self.name = name
         self.types = types
         self.sprites = sprites

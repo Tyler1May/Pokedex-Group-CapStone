@@ -7,11 +7,79 @@
 
 import Foundation
 
-struct PokemonMoveContainer: Codable {
+struct PokemonMovesContainer: Codable {
     let move: Move
+    let details: [MoveDetails]
+    
+    enum CodingKeys: String, CodingKey {
+        case move
+        case details = "version_group_details"
+    }
 }
 
 struct Move: Codable {
     let name: String?
     let url: String? 
+}
+
+struct MoveDetails: Codable {
+    let levelLearned: Int?
+    let learnMethod: LearnMethod?
+    let versionGroup: VersionGroup?
+    
+    enum CodingKeys: String, CodingKey {
+        case levelLearned = "level_learned_at"
+        case learnMethod = "move_learn_method"
+        case versionGroup = "version_group"
+    }
+}
+
+struct LearnMethod: Codable {
+    let method: String
+    let url: String
+    
+    enum CodingKeys: String, CodingKey {
+        case method = "name"
+        case url
+        
+    }
+}
+
+struct VersionGroup: Codable {
+    let name: String
+    let url: String
+}
+
+struct PokemonMoveInfo: Codable {
+    let accuracy: Int?
+    let damageClass: DamageClass?
+    let type: MoveType?
+    let effect: [EffectEntry]?
+    
+    enum CodingKeys: String, CodingKey {
+        case accuracy
+        case damageClass = "damage_class"
+        case type
+        case effect = "effect_entries"
+    }
+}
+
+struct EffectEntry: Codable {
+    let effect: String
+    let shortEffect: String
+    
+    enum CodingKeys: String, CodingKey {
+        case effect
+        case shortEffect = "short_effect"
+    }
+}
+
+struct DamageClass: Codable {
+    let name: String
+    let url: URL
+}
+
+struct MoveType: Codable {
+    let name: String
+    let url: URL
 }

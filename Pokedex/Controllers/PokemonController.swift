@@ -21,7 +21,7 @@ struct PokemonController {
             URLQueryItem(name: "limit", value: "20")
         ]
         
-        var request = URLRequest(url: url.url!)
+        let request = URLRequest(url: url.url!)
         
         var data: Data
         var response: URLResponse
@@ -233,4 +233,39 @@ struct PokemonController {
             }
 
         }
+    
+    static func getMoveDetail(_ moveURL: String) async throws -> PokemonMoveInfo? {
+        let session = URLSession.shared
+        
+        guard let url = URLComponents(string: moveURL) else {
+            throw API.APIError.InvalidURL
+        }
+        
+        let request = URLRequest(url: url.url!)
+        
+        var data: Data
+        var response: URLResponse
+        
+        do {
+            let (httpData, httpResponse) = try await session.data(for: request)
+            data = httpData
+            response = httpResponse
+        } catch {
+            throw error
+        }
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw API.APIError.MoveDetailRequestFailed
+        }
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            let moveDetail = try decoder.decode(PokemonMoveInfo.self, from: data)
+            return moveDetail
+        } catch {
+            return nil
+        }
+    }
+    
 }

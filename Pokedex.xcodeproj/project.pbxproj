@@ -49,6 +49,7 @@
 		F78027C02BD2F5BB0090B631 /* RoundedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78027BF2BD2F5BB0090B631 /* RoundedShape.swift */; };
 		F78027C32BD2FA9E0090B631 /* PokemonTypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78027C22BD2FA9E0090B631 /* PokemonTypesView.swift */; };
 		F78027CA2BD30B740090B631 /* PokemonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78027C92BD30B740090B631 /* PokemonImageView.swift */; };
+		F7E56FBD2BED27C600F038EE /* PixelFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E56FBC2BED27C600F038EE /* PixelFont.swift */; };
 		F7EDCAA42BCECCBD000EAAD1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */; };
 		F7EDCAA82BCED1D2000EAAD1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */; };
 		F7EDCAAC2BCED297000EAAD1 /* SearchView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */; };
@@ -101,6 +102,7 @@
 		F78027BF2BD2F5BB0090B631 /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		F78027C22BD2FA9E0090B631 /* PokemonTypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypesView.swift; sourceTree = "<group>"; };
 		F78027C92BD30B740090B631 /* PokemonImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonImageView.swift; sourceTree = "<group>"; };
+		F7E56FBC2BED27C600F038EE /* PixelFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelFont.swift; sourceTree = "<group>"; };
 		F7EDCAA32BCECCBD000EAAD1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F7EDCAA72BCED1D2000EAAD1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F7EDCAAB2BCED297000EAAD1 /* SearchView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchView.storyboard; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 		A38B12E12B4EE879003D33D8 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
-				E1FD8A8B2BEBCEAE007D96DE /* CustomFont */,
 				A38B130E2B4EFD52003D33D8 /* ViewControllers */,
 				F7370D7D2BEA7D2C00099A38 /* MovesViewController.swift */,
 				F7370D832BEBBEA200099A38 /* PokemonMovesCell */,
@@ -225,6 +226,7 @@
 		E1FD8A8B2BEBCEAE007D96DE /* CustomFont */ = {
 			isa = PBXGroup;
 			children = (
+				F7E56FBC2BED27C600F038EE /* PixelFont.swift */,
 				E1FD8A8C2BEBCED2007D96DE /* PokemonGb-RAeo.ttf */,
 			);
 			path = CustomFont;
@@ -262,6 +264,7 @@
 		F78027C12BD2F5C40090B631 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				E1FD8A8B2BEBCEAE007D96DE /* CustomFont */,
 				F78027BF2BD2F5BB0090B631 /* RoundedShape.swift */,
 			);
 			path = Extentions;
@@ -392,6 +395,7 @@
 				F7EDCAA42BCECCBD000EAAD1 /* TabBarViewController.swift in Sources */,
 				F78027C32BD2FA9E0090B631 /* PokemonTypesView.swift in Sources */,
 				A38B12FE2B4EED7C003D33D8 /* PokemonType.swift in Sources */,
+				F7E56FBD2BED27C600F038EE /* PixelFont.swift in Sources */,
 				EA101FF52BD6BF070089F0BE /* EvolutionChain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

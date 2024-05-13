@@ -15,6 +15,7 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet var movesButton: UIButton!
     @IBOutlet var pokemonFrontImage: UIImageView!
     @IBOutlet var pokemonBackImage: UIImageView!
+    @IBOutlet var shinySwitch: UISwitch!
     
     var pokemon: Pokemon?
     var evo: PokemonEvolutionContainer?
@@ -25,12 +26,17 @@ class PokemonDetailViewController: UIViewController {
 
         nameLabel.text = pokemon?.name.capitalized
         numberLabel.text = "No. \(pokemon?.id ?? 0)"
+        shinySwitch.isOn = false
+        
         if let frontImageURL = pokemon?.sprites.front_default {
             pokemonFrontImage.load(url: frontImageURL)
         }
-        if let backImageURl = pokemon?.sprites.back_default {
-            pokemonBackImage.load(url: backImageURl)
+        if let backImageURL = pokemon?.sprites.back_default {
+            pokemonBackImage.load(url: backImageURL)
         }
+        
+                
+            
         
         // Set up numberLabel constraints
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +74,9 @@ class PokemonDetailViewController: UIViewController {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: pokemonFrontImage.bottomAnchor, constant: 10),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            shinySwitch.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
+            shinySwitch.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor)
         ])
         
         // Set up movesButton constraints
@@ -153,6 +161,24 @@ class PokemonDetailViewController: UIViewController {
         if segue.identifier == "toMoves" {
             if let destinationVC = segue.destination as? MovesViewController {
                 destinationVC.moves = pokemon?.moves ?? []
+            }
+        }
+    }
+    
+    @IBAction func shinySwitchChanged(_ sender: Any) {
+        if shinySwitch.isOn {
+            if let frontShinyImageURL = pokemon?.sprites.front_shiny {
+                pokemonFrontImage.load(url: frontShinyImageURL)
+            }
+            if let backShinyImageURL = pokemon?.sprites.back_shiny {
+                pokemonBackImage.load(url: backShinyImageURL)
+            }
+        } else {
+            if let frontImageURL = pokemon?.sprites.front_default {
+                pokemonFrontImage.load(url: frontImageURL)
+            }
+            if let backImageURL = pokemon?.sprites.back_default {
+                pokemonBackImage.load(url: backImageURL)
             }
         }
     }

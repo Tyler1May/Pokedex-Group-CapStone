@@ -46,7 +46,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dQb-ze-M1s">
-                                <rect key="frame" x="0.0" y="327" width="393" height="316"/>
+                                <rect key="frame" x="0.0" y="502" width="393" height="316"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="316" id="37T-4Z-1Hf"/>
@@ -59,13 +59,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnJ-rP-rUT">
-                                <rect key="frame" x="5" y="239" width="383" height="0.0"/>
+                                <rect key="frame" x="5" y="239" width="383" height="175"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move Effect: " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEL-XG-l0K">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="159"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="ZUx-6r-3b4"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -81,7 +78,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="4Aa-g3-xRZ"/>
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D55-ow-evW">
-                                <rect key="frame" x="146" y="259" width="101" height="50"/>
+                                <rect key="frame" x="146" y="434" width="101" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="uhf-eS-HH4"/>
                                 </constraints>
@@ -123,7 +120,6 @@
                             <constraint firstItem="dQb-ze-M1s" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Mza-MC-ttB"/>
                             <constraint firstItem="kUI-oO-DkZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Od3-TJ-l6B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0ON-N3-Ubj" secondAttribute="trailing" constant="20" id="PDL-qa-ZvE"/>
-                            <constraint firstItem="PEL-XG-l0K" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.234742" id="QeI-0J-sQc"/>
                             <constraint firstItem="dQb-ze-M1s" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="S0T-qw-vfn"/>
                             <constraint firstItem="0ON-N3-Ubj" firstAttribute="top" secondItem="XrO-jX-Qse" secondAttribute="bottom" constant="14.67" id="WgX-tj-UJj"/>
                             <constraint firstItem="VPW-VG-6Hh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="YC3-oD-oiU"/>

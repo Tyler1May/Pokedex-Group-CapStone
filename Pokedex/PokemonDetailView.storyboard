@@ -23,13 +23,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQJ-ZT-z69">
-                                <rect key="frame" x="320" y="59" width="66" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-uj-U2N">
                                 <rect key="frame" x="16" y="59" width="13" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,7 +63,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="mwj-L9-c9v"/>
                     <connections>
-                        <outlet property="genderLabel" destination="sQJ-ZT-z69" id="Wqi-0F-8Sa"/>
                         <outlet property="movesButton" destination="Ss5-Ra-5T2" id="et1-n9-Tax"/>
                         <outlet property="nameLabel" destination="Sgy-v9-FUC" id="88t-gx-WwA"/>
                         <outlet property="numberLabel" destination="vjv-uj-U2N" id="8SC-Ic-0Hb"/>

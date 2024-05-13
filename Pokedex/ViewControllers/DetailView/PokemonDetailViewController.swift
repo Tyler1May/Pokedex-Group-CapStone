@@ -9,7 +9,6 @@ import UIKit
 import SwiftUI
 
 class PokemonDetailViewController: UIViewController {
-    @IBOutlet var genderLabel: UILabel!
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var movesButton: UIButton!
@@ -46,10 +45,10 @@ class PokemonDetailViewController: UIViewController {
         ])
         
         // Set up genderLabel constraints
-        genderLabel.translatesAutoresizingMaskIntoConstraints = false
+        shinySwitch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genderLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            genderLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            shinySwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            shinySwitch.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
         // Set up pokemonFrontImage constraints
@@ -64,7 +63,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up pokemonBackImage constriants
         pokemonBackImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonBackImage.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 10),
+            pokemonBackImage.topAnchor.constraint(equalTo: shinySwitch.bottomAnchor, constant: 10),
             pokemonBackImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             pokemonBackImage.widthAnchor.constraint(equalToConstant: 180),
             pokemonBackImage.heightAnchor.constraint(equalToConstant: 180)
@@ -75,8 +74,8 @@ class PokemonDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: pokemonFrontImage.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shinySwitch.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
-            shinySwitch.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor)
+//            shinySwitch.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
+//            shinySwitch.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor)
         ])
         
         // Set up movesButton constraints

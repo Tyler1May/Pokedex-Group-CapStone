@@ -17,6 +17,9 @@ class MovesViewController: UIViewController {
     @IBOutlet var levelLearnedLabel: UILabel!
     @IBOutlet var learnMethodLabel: UILabel!
     @IBOutlet var moveEffectLabel: UILabel!
+    @IBOutlet var powerLabel: UILabel!
+    @IBOutlet var ppLabel: UILabel!
+    @IBOutlet var priorityLabel: UILabel!
     
     
     var moves: [PokemonMovesContainer] = []
@@ -56,6 +59,9 @@ class MovesViewController: UIViewController {
                     self.moveNameLabel.text = moveName.capitalized
                     self.levelLearnedLabel.text = "Level Learned: \(selectedMove[0].levelLearned ?? 0)"
                     self.learnMethodLabel.text = "Method: \(selectedMove[0].learnMethod?.method.capitalized ?? "")"
+                    self.powerLabel.text = "Power: \(self.moveDetail?.power ?? 0)"
+                    self.ppLabel.text = "PP: \(self.moveDetail?.pp ?? 0)"
+                    self.priorityLabel.text = "Priority: \(self.moveDetail?.priority ?? 0)"
                     self.accuracyLabel.text = "Accuracy: \(self.moveDetail?.accuracy ?? 0)"
                     self.damageClassLabel.text = "Damage Class: \(self.moveDetail?.damageClass?.name.capitalized ?? "")"
                     if let effect = self.moveDetail?.effect?[0].effect {

@@ -23,13 +23,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQJ-ZT-z69">
-                                <rect key="frame" x="320" y="59" width="66" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjv-uj-U2N">
                                 <rect key="frame" x="16" y="59" width="13" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -57,18 +50,25 @@
                                 <rect key="frame" x="213" y="92" width="130" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szE-iu-zc5">
+                                <rect key="frame" x="329" y="239" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="shinySwitchChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="qst-mU-SmB"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="mwj-L9-c9v"/>
                     <connections>
-                        <outlet property="genderLabel" destination="sQJ-ZT-z69" id="Wqi-0F-8Sa"/>
                         <outlet property="movesButton" destination="Ss5-Ra-5T2" id="et1-n9-Tax"/>
                         <outlet property="nameLabel" destination="Sgy-v9-FUC" id="88t-gx-WwA"/>
                         <outlet property="numberLabel" destination="vjv-uj-U2N" id="8SC-Ic-0Hb"/>
                         <outlet property="pokemonBackImage" destination="o36-fH-hUn" id="nXR-0K-hJJ"/>
                         <outlet property="pokemonFrontImage" destination="nwa-W7-f2v" id="yzF-5p-UbW"/>
+                        <outlet property="shinySwitch" destination="szE-iu-zc5" id="4a6-Gl-dnO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

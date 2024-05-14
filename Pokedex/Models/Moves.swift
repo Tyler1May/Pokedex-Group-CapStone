@@ -55,12 +55,18 @@ struct PokemonMoveInfo: Codable {
     let damageClass: DamageClass?
     let type: MoveType?
     let effect: [EffectEntry]?
+    let power: Int?
+    let pp: Int?
+    let priority: Int?
     
     enum CodingKeys: String, CodingKey {
         case accuracy
         case damageClass = "damage_class"
         case type
         case effect = "effect_entries"
+        case power
+        case pp
+        case priority
     }
 }
 

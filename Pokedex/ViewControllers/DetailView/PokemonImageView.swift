@@ -13,9 +13,13 @@ struct PokemonImageView: View {
     
     var body: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: 10) {
-                ForEach(evoPokemon, id: \.id) { pokemon in
-                    EvolutionView(pokemon: pokemon)
+            VStack(alignment: .leading) {
+                Text("Evolution:")
+                    .font(.title)
+                HStack(spacing: 10) {
+                    ForEach(evoPokemon, id: \.id) { pokemon in
+                        EvolutionView(pokemon: pokemon)
+                    }
                 }
             }
         }

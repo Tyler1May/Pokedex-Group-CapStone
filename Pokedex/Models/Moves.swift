@@ -22,15 +22,25 @@ struct Move: Codable {
     let url: String? 
 }
 
+extension Move {
+    static var testMove: Move {
+        Move(name: "razor-wind", url: "https://pokeapi.co/api/v2/move/13/")
+    }
+}
+
 struct MoveDetails: Codable {
     let levelLearned: Int?
     let learnMethod: LearnMethod?
-    let versionGroup: VersionGroup?
     
     enum CodingKeys: String, CodingKey {
         case levelLearned = "level_learned_at"
         case learnMethod = "move_learn_method"
-        case versionGroup = "version_group"
+    }
+}
+
+extension MoveDetails {
+    static var testMoveDetails: MoveDetails {
+        MoveDetails(levelLearned: 0, learnMethod: LearnMethod.testLearnMethod)
     }
 }
 
@@ -45,9 +55,10 @@ struct LearnMethod: Codable {
     }
 }
 
-struct VersionGroup: Codable {
-    let name: String
-    let url: String
+extension LearnMethod {
+    static var testLearnMethod: LearnMethod {
+        LearnMethod(method: "egg", url: "https://pokeapi.co/api/v2/move-learn-method/2/")
+    }
 }
 
 struct PokemonMoveInfo: Codable {

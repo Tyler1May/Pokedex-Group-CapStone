@@ -22,3 +22,12 @@ extension PokemonSprites: Hashable {
         hasher.combine(back_shiny)
     }
 }
+
+extension PokemonSprites {
+    static var testSprites: PokemonSprites {
+        PokemonSprites(front_default: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")!,
+                       back_default: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png")!,
+                       front_shiny: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png")!,
+                       back_shiny: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png")!)
+    }
+}

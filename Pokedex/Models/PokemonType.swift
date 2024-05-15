@@ -20,3 +20,9 @@ extension PokemonType: Hashable {
     }
 }
 
+extension PokemonType {
+    static var testPokemonType: PokemonType {
+        PokemonType(name: "grass", url: "https://pokeapi.co/api/v2/type/12/")
+    }
+}
+

@@ -19,3 +19,9 @@ extension PokemonTypeContainer: Hashable {
         hasher.combine(type)
     }
 }
+
+extension PokemonTypeContainer {
+    static var testPokemonTypeContainer: PokemonTypeContainer {
+        PokemonTypeContainer(slot: 1, type: PokemonType.testPokemonType)
+    }
+}

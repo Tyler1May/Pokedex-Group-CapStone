@@ -63,7 +63,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up pokemonBackImage constriants
         pokemonBackImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonBackImage.topAnchor.constraint(equalTo: shinyButton.bottomAnchor, constant: 10),
+            pokemonBackImage.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 10),
             pokemonBackImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             pokemonBackImage.widthAnchor.constraint(equalToConstant: 180),
             pokemonBackImage.heightAnchor.constraint(equalToConstant: 180)

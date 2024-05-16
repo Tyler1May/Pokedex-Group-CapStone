@@ -27,7 +27,7 @@ final class PokemonDetailViewControllerTest: XCTestCase {
             XCTAssertNotNil(sut.movesButton)
             XCTAssertNotNil(sut.pokemonFrontImage)
             XCTAssertNotNil(sut.pokemonBackImage)
-            XCTAssertNotNil(sut.shinySwitch)
+            XCTAssertNotNil(sut.shinyButton)
 
         }
 
@@ -35,15 +35,17 @@ final class PokemonDetailViewControllerTest: XCTestCase {
             let mockPokemon = Pokemon(name: "bulbasaur", types: [], sprites: PokemonSprites.testSprites, id: 1, stats: [], moves: [])
             sut.pokemon = mockPokemon
 
-            XCTAssertFalse(sut.shinySwitch.isOn)
-
-            sut.shinySwitch.isOn = true
-            sut.shinySwitchChanged(sut.shinySwitch!)
+            XCTAssertFalse(sut.showShiny)
             XCTAssertEqual(sut.pokemonFrontImage.image, UIImage(named: "front_shiny"))
             XCTAssertEqual(sut.pokemonBackImage.image, UIImage(named: "back_shiny"))
 
-            sut.shinySwitch.isOn = false
-            sut.shinySwitchChanged(sut.shinySwitch!)
+            sut.showShiny = true
+            XCTAssertTrue(sut.showShiny)
+            XCTAssertEqual(sut.pokemonFrontImage.image, UIImage(named: "front_default"))
+            XCTAssertEqual(sut.pokemonBackImage.image, UIImage(named: "back_default"))
+            
+            sut.showShiny = false
+            XCTAssertFalse(sut.showShiny)
             XCTAssertEqual(sut.pokemonFrontImage.image, UIImage(named: "front_default"))
             XCTAssertEqual(sut.pokemonBackImage.image, UIImage(named: "back_default"))
         }

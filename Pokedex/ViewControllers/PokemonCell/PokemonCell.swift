@@ -85,7 +85,7 @@ class PokemonCell: UITableViewCell {
     private func updateLikeButton() {
         let star = fav.favPokemon.contains(where: { $0.id == pokemon?.id }) ? "star.fill" : "star"
         likeButton.setImage(UIImage(systemName: star), for: .normal)
-        likeButton.tintColor = fav.favPokemon.contains(where: { $0.id == pokemon?.id}) ? .systemYellow : .black
+        likeButton.tintColor = fav.favPokemon.contains(where: { $0.id == pokemon?.id}) ? .systemYellow : .gray
     }
     
     private func updateTeamButton() {

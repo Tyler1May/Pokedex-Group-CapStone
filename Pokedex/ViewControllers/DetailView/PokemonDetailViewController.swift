@@ -14,18 +14,18 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet var movesButton: UIButton!
     @IBOutlet var pokemonFrontImage: UIImageView!
     @IBOutlet var pokemonBackImage: UIImageView!
-    @IBOutlet var shinySwitch: UISwitch!
+    @IBOutlet var shinyButton: UIButton!
     
     var pokemon: Pokemon?
     var evo: PokemonEvolutionContainer?
     var species: PokemonSpeciesContainer?
+    var showShiny: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nameLabel.text = pokemon?.name.capitalized
         numberLabel.text = "No. \(pokemon?.id ?? 0)"
-        shinySwitch.isOn = false
         
         if let frontImageURL = pokemon?.sprites.front_default {
             pokemonFrontImage.load(url: frontImageURL)
@@ -45,10 +45,10 @@ class PokemonDetailViewController: UIViewController {
         ])
         
         // Set up genderLabel constraints
-        shinySwitch.translatesAutoresizingMaskIntoConstraints = false
+        shinyButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            shinySwitch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            shinySwitch.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            shinyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            shinyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
         // Set up pokemonFrontImage constraints
@@ -63,7 +63,7 @@ class PokemonDetailViewController: UIViewController {
         // Set up pokemonBackImage constriants
         pokemonBackImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            pokemonBackImage.topAnchor.constraint(equalTo: shinySwitch.bottomAnchor, constant: 10),
+            pokemonBackImage.topAnchor.constraint(equalTo: shinyButton.bottomAnchor, constant: 10),
             pokemonBackImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             pokemonBackImage.widthAnchor.constraint(equalToConstant: 180),
             pokemonBackImage.heightAnchor.constraint(equalToConstant: 180)
@@ -164,8 +164,9 @@ class PokemonDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func shinySwitchChanged(_ sender: Any) {
-        if shinySwitch.isOn {
+    @IBAction func shinyButtonTapped(_ sender: Any) {
+        showShiny.toggle()
+        if showShiny == true {
             if let frontShinyImageURL = pokemon?.sprites.front_shiny {
                 pokemonFrontImage.load(url: frontShinyImageURL)
             }
@@ -180,6 +181,15 @@ class PokemonDetailViewController: UIViewController {
                 pokemonBackImage.load(url: backImageURL)
             }
         }
+        
+        UIView.transition(with: shinyButton, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+            if self.showShiny {
+                self.shinyButton.setImage(UIImage(systemName: "bubbles.and.sparkles.fill"), for: .normal)
+                self.shinyButton.tintColor = .systemYellow
+            } else {
+                self.shinyButton.setImage(UIImage(systemName: "bubbles.and.sparkles"), for: .normal)
+                self.shinyButton.tintColor = .systemGray
+            }
+        }, completion: nil)
     }
-    
 }

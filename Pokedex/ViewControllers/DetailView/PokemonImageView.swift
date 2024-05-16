@@ -69,10 +69,10 @@ struct EvolutionView: View {
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                Circle()
-                    .stroke(Color.black , lineWidth: 2) // Customize the color and lineWidth as per your preference
-                    .frame(width: 210, height: 105)// Adjust the size of the circle as needed
-                    .padding(.top, 5)
+//                Circle()
+//                    .stroke(Color.black , lineWidth: 2) // Customize the color and lineWidth as per your preference
+//                    .frame(width: 210, height: 105)// Adjust the size of the circle as needed
+//                    .padding(.top, 5)
                 AsyncImage(url: URL(string: "\(pokemon.sprites.front_default)")) { image in
                     image
                         .resizable()

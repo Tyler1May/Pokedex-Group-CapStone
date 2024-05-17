@@ -14,15 +14,15 @@ class TabBarViewController: UITabBarController {
         
         let searchViewController: UIViewController = UIStoryboard(name: "SearchView", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as UIViewController
         
-        let myTeamViewController: UIViewController = UIStoryboard(name: "MyTeamView", bundle: nil).instantiateViewController(withIdentifier: "MyTeamViewController") as UIViewController
+//        let myTeamViewController: UIViewController = UIStoryboard(name: "MyTeamView", bundle: nil).instantiateViewController(withIdentifier: "MyTeamViewController") as UIViewController
         
         let favoritesViewController: UIViewController = UIStoryboard(name: "FavoritesView", bundle: nil).instantiateViewController(withIdentifier: "FavoritesView") as UIViewController
         
         searchViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        myTeamViewController.tabBarItem = UITabBarItem(title: "My Team", image: UIImage(named: "pokeball"), tag: 1)
-        favoritesViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+//        myTeamViewController.tabBarItem = UITabBarItem(title: "My Team", image: UIImage(named: "pokeball"), tag: 1)
+        favoritesViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
-        self.viewControllers = [searchViewController, myTeamViewController, favoritesViewController]
+        self.viewControllers = [searchViewController, favoritesViewController] // myTeamViewController
         
         let tabBar = self.tabBar
         tabBar.backgroundColor = .systemRed

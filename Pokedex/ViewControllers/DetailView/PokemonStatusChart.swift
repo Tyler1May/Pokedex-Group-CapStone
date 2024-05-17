@@ -19,9 +19,14 @@ struct PokemonStatusChart: View {
                 HStack(spacing: 5) {
                     Text(stat.stat.name.capitalized)
                         .frame(width: 75, alignment: .leading)
-                    RoundedShape(corners: [.topRight, .bottomRight])
-                        .fill(self.barColor(for: stat.stat.name))
-                        .frame(width: CGFloat(stat.baseStat), height: 20)
+                    ZStack(alignment: .leading) {
+                        RoundedShape(corners: [.topRight, .bottomRight])
+                            .frame(width: 200, height: 20)
+                            .foregroundStyle(.gray)
+                        RoundedShape(corners: [.topRight, .bottomRight])
+                            .fill(self.barColor(for: stat.stat.name))
+                            .frame(width: CGFloat(stat.baseStat), height: 20)
+                    }
                     Text("\(stat.baseStat)")
                 }
             }

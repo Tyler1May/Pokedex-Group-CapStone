@@ -48,6 +48,7 @@ class PokemonCell: UITableViewCell {
         self.pokemon = pokemon
         updateLikeButton()
         updateTeamButton()
+        myTeamButton.isHidden = true
         
     }
     

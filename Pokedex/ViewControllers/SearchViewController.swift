@@ -42,8 +42,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
     var pokemon: [Pokemon] = []
     var fav = FavoriteController.shared
     let team = MyTeamController.shared
-    var filteredPokemon: [Pokemon] = []
-    var isSearching = false
+//    var filteredPokemon: [Pokemon] = []
+//    var isSearching = false
     
     var isFetchingPokemon = false
     var hasMorePokemon = true
@@ -55,6 +55,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         configureTableView()
         configureDataSource()
         displayGenericPokemon()
+        
+        searchTableView.keyboardDismissMode = .onDrag
         
         searchBar.delegate = self
         
@@ -80,7 +82,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
                   if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
                     let spinner = UIActivityIndicatorView(style: .large)
                     spinner.frame = CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 70)
-                    if self.isSearching {
+                    if self.isFetchingPokemon {
                       spinner.stopAnimating()
                       tableView.tableFooterView = nil
                     } else {
@@ -102,7 +104,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Pokemon>()
         snapshot.appendSections([0])
-        snapshot.appendItems(isSearching ? filteredPokemon : pokemon)
+        snapshot.appendItems(pokemon)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
         
@@ -153,16 +155,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching {
-            return filteredPokemon.count
-        } else {
+        
             return pokemon.count
-        }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
-        let pokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
+        let pokemon = self.pokemon[indexPath.row]
         cell.update(with: pokemon)
         cell.delegate = self
         
@@ -170,7 +170,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedPokemon = isSearching ? filteredPokemon[indexPath.row] : self.pokemon[indexPath.row]
+        let selectedPokemon = self.pokemon[indexPath.row]
         Task {
             do {
                 let species = try await PokemonController.getPokemonSpecies(selectedPokemon.id)
@@ -199,20 +199,29 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text, !searchText.isEmpty {
+        
+        if let searchText = searchBar.text, !searchText.isEmpty, !isFetchingPokemon {
             Task {
                 do {
+                    self.isFetchingPokemon = true
                     if let searchedPokemon = try await PokemonController.getSpecificPokemon(pokemonName: searchText) {
-                        isSearching = true
-                        filteredPokemon = [searchedPokemon]
+                        self.pokemon = [searchedPokemon]
                         applySnapshot()
+                        self.isFetchingPokemon = false
                     }
                 } catch {
+                    self.isFetchingPokemon = false
                     print("Error searching Pokemon: \(error.localizedDescription)")
                 }
             }
         } else {
-            isSearching = false
+            displayGenericPokemon()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.pokemon.removeAll()
             displayGenericPokemon()
         }
     }

@@ -53,8 +53,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UpdateCellDel
         super.viewDidLoad()
         
         configureTableView()
-        configureDataSource()
         displayGenericPokemon()
+        configureDataSource()
         
         searchTableView.keyboardDismissMode = .onDrag
         
